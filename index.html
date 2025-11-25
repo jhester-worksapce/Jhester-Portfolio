@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jhester Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./img/logo/Logo.png" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <!-- Page Loader -->
+    <div id="pageLoader" class="preloader-overlay">
+      <div class="preloader-inner">
+        <div class="loader">
+          <svg viewBox="0 0 80 80">
+            <circle r="32" cy="40" cx="40" id="test"></circle>
+          </svg>
+        </div>
+
+        <div class="loader triangle">
+          <svg viewBox="0 0 86 80">
+            <polygon points="43 8 79 72 7 72"></polygon>
+          </svg>
+        </div>
+
+        <div class="loader">
+          <svg viewBox="0 0 80 80">
+            <rect height="64" width="64" y="8" x="8"></rect>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <div class="logo">
+        <img src="./img/logo/Logo.png" alt="Logo" />
+      </div>
+
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+      <nav id="navMenu">
+        <a href="#home">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#skills">SKILLS</a>
+        <a href="#tools">TOOLS</a>
+        <a href="#service">SERVICE</a>
+        <a href="#projects">PROJECT</a>
+        <a href="#testimonials">TESTIMONIAL</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
+    </header>
+
+    <main id="mainContent">
+      <!-- ABOUT SECTION -->
+      <section class="about" id="home">
+        <div class="about-container">
+          <div class="about-image" data-aos="fade-right">
+            <img
+              class="profile_img"
+              src="./img/jhun_profile.png"
+              alt="About Me Image"
+            />
+          </div>
+          <div class="about-text" data-aos="fade-left">
+            <h2>
+              <span class="typed-text"></span><span class="cursor">|</span>
+            </h2>
+            <p class="paragraph">
+              I provide flexible, high-quality IT solutions to help businesses
+              grow, streamline operations, and solve technical challenges. With
+              a strong foundation in areas such as software development, systems
+              administration, cloud services, cybersecurity, and IT support, I
+              offer end-to-end expertise tailored to your unique needs.
+            </p>
+            <p class="paragraph">
+              As a freelancer, I bring adaptability, clear communication, and a
+              results-driven approach to every project. Whether you're a startup
+              needing infrastructure setup, a company seeking to improve system
+              performance, or a team looking for technical consulting. I’m here
+              to help. Let’s connect and make technology work for you.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- INFO SECTION -->
+      <section class="info-section" id="about">
+        <div class="info-container">
+          <div class="info-text" data-aos="fade-right">
+            <h2 class="info-typed">
+              <span class="info-typed-text"></span>
+              <span class="info-cursor">|</span>
+            </h2>
+
+            <p class="paragraph">
+              &nbsp;&nbsp;&nbsp;&nbsp; Hardworking and honest software developer
+              with strong skills in both frontend and backend development.
+              Experienced in building real-world systems for businesses and
+              teaching application development. Can work independently or in
+              teams, under pressure, and with strong time management.
+            </p>
+
+            <div class="button-group">
+              <button class="info-button">
+                <i class="fas fa-layer-group"></i> Full-Stack Development
+              </button>
+              <button class="info-button">
+                <i class="fas fa-diagram-project"></i> Project Management
+              </button>
+              <button class="info-button">
+                <i class="fas fa-pen-nib"></i> UI/UX Design
+              </button>
+              <button class="info-button">
+                <i class="fas fa-users-cog"></i> Leadership & Communication
+              </button>
+            </div>
+
+            <button class="read-more-button">
+              <i class="fas fa-arrow-right"></i> Read More
+            </button>
+          </div>
+
+          <div class="info-image" data-aos="fade-left">
+            <img src="./img/firmware.svg" alt="About Image" />
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS SECTION -->
+      <section id="skills" class="skills-section">
+        <div class="services-title">
+          <h2 class="grid-title-services">Skills</h2>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-item">
+            <div class="skill-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <h3>HTML, CSS, & JavaScript</h3>
+            <p>
+              Building clean, semantic, and modern interfaces with a focus on
+              performance and maintainability.
+            </p>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3>Responsive Front-End</h3>
+            <p>
+              Crafting layouts that adapt beautifully to mobile, tablet, and
+              desktop screens.
+            </p>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-icon">
+              <i class="fas fa-server"></i>
+            </div>
+            <h3>Back-End Development</h3>
+            <p>
+              Working with PHP and databases to build reliable, data-driven
+              systems.
+            </p>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-icon">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <h3>Full-Stack Web Apps</h3>
+            <p>
+              End-to-end application development — from UI & API design to
+              deployment and optimization.
+            </p>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-icon">
+              <i class="fas fa-pencil-ruler"></i>
+            </div>
+            <h3>UI/UX Wireframing</h3>
+            <p>
+              Designing user flows, low- to high-fidelity mockups, and
+              interactive prototypes.
+            </p>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3>Data Annotation & Labeling</h3>
+            <p>
+              Preparing high-quality labeled datasets to improve AI/ML model
+              accuracy and reliability.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TOOLS SECTION  -->
+      <section class="card-grid-section" id="tools">
+        <h2 class="grid-title">
+          Tools &nbsp;|&nbsp; Languages &nbsp;|&nbsp; Frameworks
+        </h2>
+        <div class="card-slider slider-right-left">
+          <div class="card-track track-right-left">
+            <!-- Android Studio -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img
+                  src="./img/TOOLS/ANDROID STUDIO.png"
+                  alt="Android Studio"
+                />
+              </div>
+              <div class="card-text"><p>Android Studio</p></div>
+            </div>
+            <!-- Visual Studio -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img
+                  src="./img/TOOLS/Visual_Studio_Icon_2022.svg.png"
+                  alt="Visual Studio"
+                />
+              </div>
+              <div class="card-text"><p>Visual Studio</p></div>
+            </div>
+            <!-- Label Studio -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/TOOLS/label_studio.png" alt="Visual Studio" />
+              </div>
+              <div class="card-text"><p>Label Studio</p></div>
+            </div>
+            <!-- CVAT -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/TOOLS/CVAT.png" alt="Visual Studio" />
+              </div>
+              <div class="card-text"><p>CVAT</p></div>
+            </div>
+            <!-- Visual Studio Code -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img
+                  src="./img/TOOLS/Visual_Studio_Code_1.35_icon.png"
+                  alt="Visual Studio Code"
+                />
+              </div>
+              <div class="card-text"><p>Visual Studio Code</p></div>
+            </div>
+            <!-- Adobe XD -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/TOOLS/XD.png" alt="Adobe XD" />
+              </div>
+              <div class="card-text"><p>Adobe XD</p></div>
+            </div>
+            <!-- Github -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img
+                  src="./img/TOOLS/GitHub_Invertocat_Logo.svg.png"
+                  alt="Github"
+                />
+              </div>
+              <div class="card-text"><p>Github</p></div>
+            </div>
+            <!-- Unity -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/TOOLS/UNITY.png" alt="Unity" />
+              </div>
+              <div class="card-text"><p>Unity</p></div>
+            </div>
+            <!-- Sublime -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/TOOLS/sublime.png" alt="Sublime" />
+              </div>
+              <div class="card-text"><p>Sublime</p></div>
+            </div>
+            <!-- PyCharm -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/TOOLS/Pycharm.png" alt="Pycharm" />
+              </div>
+              <div class="card-text"><p>PyCharm</p></div>
+            </div>
+            <!-- Android Studio -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img
+                  src="./img/TOOLS/ANDROID STUDIO.png"
+                  alt="Android Studio"
+                />
+              </div>
+              <div class="card-text"><p>Android Studio</p></div>
+            </div>
+            <!-- Visual Studio -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img
+                  src="./img/TOOLS/Visual_Studio_Icon_2022.svg.png"
+                  alt="Visual Studio"
+                />
+              </div>
+              <div class="card-text"><p>Visual Studio</p></div>
+            </div>
+            <!-- Visual Studio Code -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img
+                  src="./img/TOOLS/Visual_Studio_Code_1.35_icon.png"
+                  alt="Visual Studio Code"
+                />
+              </div>
+              <div class="card-text"><p>Visual Studio Code</p></div>
+            </div>
+            <!-- Adobe XD -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/TOOLS/XD.png" alt="Adobe XD" />
+              </div>
+              <div class="card-text"><p>Adobe XD</p></div>
+            </div>
+            <!-- Github -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img
+                  src="./img/TOOLS/GitHub_Invertocat_Logo.svg.png"
+                  alt="Github"
+                />
+              </div>
+              <div class="card-text"><p>Github</p></div>
+            </div>
+            <!-- Unity -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/TOOLS/UNITY.png" alt="Unity" />
+              </div>
+              <div class="card-text"><p>Unity</p></div>
+            </div>
+            <!-- Sublime -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/TOOLS/sublime.png" alt="Sublime" />
+              </div>
+              <div class="card-text"><p>Sublime</p></div>
+            </div>
+            <!-- PyCharm -->
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/TOOLS/Pycharm.png" alt="Pycharm" />
+              </div>
+              <div class="card-text"><p>PyCharm</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LANGUAGES -->
+      <section class="card-grid-section">
+        <div class="card-slider slider-left-right">
+          <div class="card-track track-left-right">
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/HTML.png" alt="HTML" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/CSS.png" alt="CSS" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/JAVASCRIPT.png" alt="JavaScript" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/PHP.png" alt="PHP" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img
+                  src="./img/LANGUAGES/VISUAL_BASIC.png"
+                  alt="Visual Basic"
+                />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/python.png" alt="Python" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/GIT.png" alt="Git" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/C++.png" alt="C++" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/C.png" alt="C" />
+              </div>
+            </div>
+
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/HTML.png" alt="HTML" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/CSS.png" alt="CSS" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/JAVASCRIPT.png" alt="JavaScript" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/PHP.png" alt="PHP" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img
+                  src="./img/LANGUAGES/VISUAL_BASIC.png"
+                  alt="Visual Basic"
+                />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/python.png" alt="Python" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/GIT.png" alt="Git" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/C++.png" alt="C++" />
+              </div>
+            </div>
+            <div class="circle-card">
+              <div class="sphere-img">
+                <img src="./img/LANGUAGES/C.png" alt="C" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FRAMEWORKS -->
+      <section class="card-grid-section">
+        <div class="card-slider slider-right-left">
+          <div class="card-track track-right-left">
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/FRAMEWORKS/Bootstrap.png" alt="Bootstrap" />
+              </div>
+              <div class="card-text"><p>Bootstrap</p></div>
+            </div>
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/FRAMEWORKS/Bunifu.png" alt="Bunifu" />
+              </div>
+              <div class="card-text"><p>Bunifu</p></div>
+            </div>
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/FRAMEWORKS/Flutter.png" alt="Flutter" />
+              </div>
+              <div class="card-text"><p>Flutter</p></div>
+            </div>
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/FRAMEWORKS/Laravel.png" alt="Laravel" />
+              </div>
+              <div class="card-text"><p>Laravel</p></div>
+            </div>
+
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/FRAMEWORKS/Bootstrap.png" alt="Bootstrap" />
+              </div>
+              <div class="card-text"><p>Bootstrap</p></div>
+            </div>
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/FRAMEWORKS/Bunifu.png" alt="Bunifu" />
+              </div>
+              <div class="card-text"><p>Bunifu</p></div>
+            </div>
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/FRAMEWORKS/Flutter.png" alt="Flutter" />
+              </div>
+              <div class="card-text"><p>Flutter</p></div>
+            </div>
+            <div class="card">
+              <div class="card-img rotate-card">
+                <img src="./img/FRAMEWORKS/Laravel.png" alt="Laravel" />
+              </div>
+              <div class="card-text"><p>Laravel</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <div class="services-background" id="service">
+        <section class="custom-two-rows">
+          <section class="services-title">
+            <h2 class="grid-title-services">
+              Web Application or Website | Android Application | Game
+              Application | Image with Bounding Box | Box with Dots or Grid
+            </h2>
+          </section>
+          <div class="row">
+            <div class="row-image android-img" data-aos="fade-up-right">
+              <img src="./img/SERVICES/android.svg" alt="Android App" />
+            </div>
+            <div class="row-text" style="width: 120px" data-aos="fade-up-left">
+              <h2 class="service-typing-title">
+                <span class="service-typed-text"></span>
+                <span class="service-cursor">|</span>
+              </h2>
+
+              <p>
+                &nbsp;&nbsp;&nbsp;As a solo developer, I specialize in building
+                custom Android apps and mobile games from the ground up. Whether
+                it's a sleek business app or a fun, addictive game, I handle the
+                full development cycle from design to deployment. My focus is on
+                performance, clean UI, and delivering smooth user experiences
+                that work flawlessly across devices.
+              </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="row-text" style="width: 120px" data-aos="fade-up-right">
+              <h2 class="webapp-typing-title">
+                <span class="webapp-typed-text"></span>
+                <span class="webapp-cursor">|</span>
+              </h2>
+
+              <p>
+                &nbsp;&nbsp;&nbsp; I create modern, responsive web applications
+                tailored to your needs whether it's a dynamic business
+                dashboard, a custom CMS, or an interactive user platform. As a
+                solo developer, I handle everything from frontend design to
+                backend logic, ensuring your app is fast, secure, and
+                user-friendly across all devices.
+              </p>
+            </div>
+            <div class="row-image desktop-img" data-aos="fade-up-left">
+              <img src="./img/SERVICES/Website.svg" alt="Desktop App" />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- FEATURED PROJECTS -->
+      <section id="projects" class="panel">
+        <section class="services-title">
+          <h2 class="grid-title-services">Featured Projects</h2>
+        </section>
+        <div class="container projects">
+          <div class="project-grid">
+            <!-- Project 1 -->
+            <article class="project-card">
+              <div class="project-image">
+                <img src="/img/Projects/masaWrap.PNG" alt="MasWrap" />
+              </div>
+              <div class="project-body">
+                <h4>MasaWrap – Where Every Bite Wraps You in Flavor</h4>
+
+                <p>
+                  &nbsp; &nbsp; <strong>Welcome to MasaWrap,</strong> your
+                  friendly neighborhood spot where delicious meets delightful.
+                  Whether you're craving a savory snack, a sweet treat, or a
+                  quick, satisfying meal, we’ve wrapped it just for you.
+                </p>
+
+                <p>
+                  <strong>Why MasaWrap?</strong><br />
+                  &nbsp; &nbsp; At MasWrap, we’re committed to delivering fresh
+                  ingredients, bold flavors, and fast service. From hearty wraps
+                  to classic local favorites, our menu is crafted with
+                  creativity and care — making every bite a moment worth
+                  savoring.
+                </p>
+
+                <p>
+                  <strong>What You’ll Find:</strong><br />
+                  • A well-rounded menu featuring both timeless favorites and
+                  exciting new flavors.<br />
+                  • Fresh food prepared quickly so you don’t have to wait
+                  long.<br />
+                  • Consistent quality in every dish, paired with friendly
+                  service.<br />
+                  • Delivery and pickup options tailored for your convenience.
+                </p>
+
+                <p>
+                  <strong>Our Promise to You:</strong><br />
+                  &nbsp; &nbsp; We believe flavor should excite, service should
+                  be seamless, and your experience should feel like you’re among
+                  friends. Stop by, place your order, or have it delivered
+                  because good food doesn’t wait.
+                </p>
+
+                <a
+                  class="btn ghost small"
+                  href="https://masawrap.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >View Project</a
+                >
+              </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="project-card">
+              <div class="project-image">
+                <img src="/img/Projects/Zabcus.PNG" alt="Project 2" />
+              </div>
+              <div class="project-body">
+                <h4>Zabcus Builder – Building Your Vision into Reality</h4>
+
+                <p>
+                  &nbsp; &nbsp;<strong>Welcome to Zabcus Builder,</strong> ,
+                  where every brick, beam, and blueprint is expertly aligned
+                  with your vision. Whether you're embarking on a new build,
+                  planning a renovation, or tailoring a space to fit unique
+                  needs — our team is here to bring it to life.
+                </p>
+
+                <p>
+                  <strong>Why Choose Zabcus Builder?</strong><br />
+                  &nbsp; At Zabcus Builder, we combine precision craftsmanship,
+                  industry‑leading expertise, and a passion for design to
+                  deliver outstanding construction solutions. Your project is
+                  more than a structure—it’s your vision. And we’re committed to
+                  executing it with excellence.
+                </p>
+
+                <p>
+                  <strong>Our Promise to You:</strong><br />
+                  • Comprehensive services covering everything from initial
+                  consultation to final handover.<br />
+                  • Transparent communication and attention to detail at every
+                  step.<br />
+                  • Reliable support, ensuring your project stays on schedule
+                  and aligns with your goals.<br />
+                  • A collaborative process where your input shapes the outcome.
+                </p>
+
+                <p>
+                  <strong>Let’s Build Together:</strong><br />
+                  &nbsp; &nbsp; Ready to start? Get in touch and let our
+                  construction team transform your ideas into a space you’ll be
+                  proud of. With Zabcus Builder, your dream project is in
+                  capable hands.
+                </p>
+
+                <a
+                  class="btn ghost small"
+                  href="https://zabcus-builder-rmlr.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >View Project</a
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section id="testimonials" class="panel-testimonials alt">
+        <div class="container testimonials">
+          <section class="services-title">
+            <h2 class="grid-title-services">Testimonials</h2>
+          </section>
+          <!-- <h3 class="section-title"></h3> -->
+
+          <!-- Swiper Carousel -->
+          <div class="swiper testimonials-swiper">
+            <div class="swiper-wrapper">
+              <!-- Testimonial 1 -->
+              <div class="swiper-slide">
+                <div class="testimonials-card">
+                  <div class="avatar-circle" aria-hidden="true">
+                    <img src="./img/AVATAR/hero1.jpeg" alt="Hero_1" />
+                  </div>
+                  <h4>Full Stack Developer</h4>
+                  <p>
+                    "Working with Jhun Lester was a game-changer. His frontend
+                    and backend expertise helped us launch a clean, scalable
+                    application on time. He delivers efficient code and creative
+                    solutions. Highly recommended!"
+                  </p>
+                </div>
+              </div>
+
+              <!-- Testimonial 2 -->
+              <div class="swiper-slide">
+                <div class="testimonials-card">
+                  <div class="avatar-circle" aria-hidden="true">
+                    <img src="./img/AVATAR/hero2.jpeg" alt="Hero_2" />
+                  </div>
+                  <h4>Frontend Developer</h4>
+                  <p>
+                    "We are so impressed with Jhun Lester frontend skills. He
+                    transformed our website into a visually stunning and highly
+                    responsive platform. His attention to detail made the user
+                    experience seamless and enjoyable."
+                  </p>
+                </div>
+              </div>
+
+              <!-- Testimonial 3 -->
+              <!-- <div class="swiper-slide">
+                <div class="testimonials-card">
+                  <div class="avatar-circle" aria-hidden="true">
+                    <img src="./img/AVATAR/hero3.jpeg" alt="Hero_3" />
+                  </div>
+                  <h4>Game Developer</h4>
+                  <p>
+                    "Thanks to Jhun Lester, our game project reached new
+                    heights. His development expertise and creativity brought
+                    our ideas to life, delivering a fully polished, immersive
+                    gaming experience. He’s a true professional in every sense."
+                  </p>
+                </div>
+              </div> -->
+
+              <!-- Testimonial 4 -->
+              <div class="swiper-slide">
+                <div class="testimonials-card">
+                  <div class="avatar-circle" aria-hidden="true">
+                    <img src="./img/AVATAR/hero4.jpeg" alt="Hero_4" />
+                  </div>
+                  <h4>UI/UX Designer</h4>
+                  <p>
+                    "Jhun Lester has an incredible eye for design and usability.
+                    His work on our app made the interface intuitive and
+                    visually appealing, improving user satisfaction
+                    tremendously. We couldn’t have asked for a better
+                    collaborator."
+                  </p>
+                </div>
+              </div>
+
+              <!-- Testimonial 5 -->
+              <div class="swiper-slide">
+                <div class="testimonials-card">
+                  <div class="avatar-circle" aria-hidden="true">
+                    <img src="./img/AVATAR/hero5.jpeg" alt="Hero_5" />
+                  </div>
+                  <h4>Data Labelling / Annotation Specialist</h4>
+                  <p>
+                    "Jhun Lester’s precision and dedication in data annotation
+                    greatly improved our dataset quality and AI accuracy.
+                    Exceptional work."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MAP -->
+      <section class="map-section">
+        <div class="map-text">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Rosario, La Union · Philippines
+          </div>
+          <h1>Explore Rosario, La Union</h1>
+          <h2>
+            Your jump-off point to the North: calm town vibes, mountain views,
+            and easy access to major highways.
+          </h2>
+          <div class="tag-row">
+            <button class="tag">
+              <i class="fas fa-mountain"></i>
+              Mountain & countryside views
+            </button>
+            <button class="tag">
+              <i class="fas fa-road"></i>
+              Along Marcos Highway
+            </button>
+            <button class="tag">
+              <i class="fas fa-bus"></i>
+              3–4 hrs from Manila (by land)
+            </button>
+            <button class="tag">
+              <i class="fas fa-utensils"></i>
+              Stopovers, local food & gas stations
+            </button>
+
+            <button class="tag">
+              <i class="fas fa-location-arrow"></i>
+              Ideal meeting point for trips up North
+            </button>
+            <button class="tag">
+              <i class="fas fa-car"></i>
+              Popular stopover for Manila–Baguio drives
+            </button>
+          </div>
+
+          <ul class="detail-list">
+            <li>
+              <span class="detail-bullet"></span>
+              <div>
+                <span class="detail-label">How to get there:</span>
+                Take a bus bound for La Union / Ilocos (via Rosario) or drive
+                via NLEX–SCTEX–TPLEX then exit at Rosario.
+              </div>
+            </li>
+            <li>
+              <span class="detail-bullet"></span>
+              <div>
+                <span class="detail-label">Nearby spots:</span>
+                Baguio City, Agoo, San Juan (surfing), and Marcos Highway
+                stopovers.
+              </div>
+            </li>
+            <li>
+              <span class="detail-bullet"></span>
+              <div>
+                <span class="detail-label">Best time to visit:</span>
+                Early morning for cooler weather and clearer mountain views.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- MAP CARD -->
+        <div class="map-card">
+          <div class="map-header">
+            <div class="map-header-title">Interactive Map</div>
+            <div class="status-pill">
+              <span class="status-dot"></span>
+              Live via Google Maps
+            </div>
+          </div>
+
+          <div class="map-container">
+            <div class="map-inner">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61286.830409242604!2d120.41686175403366!3d16.249876674954198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339173bf6d136671%3A0x323a3888123bf379!2sRosario%2C%20La%20Union!5e0!3m2!1sen!2sph!4v1763704375694!5m2!1sen!2sph"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+
+              <!-- Animated pin -->
+              <div class="map-pin-wrapper">
+                <div class="map-pin"></div>
+              </div>
+
+              <!-- Open in Google Maps -->
+              <a
+                class="map-cta"
+                href="https://www.google.com/maps/place/Rosario,+La+Union"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open in Google Maps
+              </a>
+            </div>
+          </div>
+
+          <div class="map-meta">
+            <span
+              >Tip: Zoom in to explore nearby restaurants & gas stations.</span
+            >
+            <span>Updated: 2025</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="site-footer" id="contact">
+        <div class="footer-container">
+          <!-- About Section -->
+          <div class="footer-col">
+            <h3 class="footer-title">Jhun Lester</h3>
+            <p class="footer-desc">
+              Full Stack Developer focused on delivering clean UI/UX, scalable
+              backend systems, and modern digital experiences.
+            </p>
+
+            <div class="footer-social">
+              <a
+                href="https://www.facebook.com/jhunlester.marinas.11"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/jhun-lester-cervantes-bb4253325/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+              <a
+                href="https://github.com/Jhester11"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/_jhester11/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="#service">Services</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+              <li><a href="#contact">Contact Me</a></li>
+            </ul>
+          </div>
+
+          <!-- Services -->
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul class="footer-links">
+              <li><a href="#">Web Development</a></li>
+              <li><a href="#">Front-End Development</a></li>
+              <li><a href="#">Back-End Development</a></li>
+              <li><a href="#">Full-Stack Development</a></li>
+              <li><a href="#">UI/UX Design</a></li>
+              <!-- <li><a href="#">Game Development</a></li> -->
+              <li><a href="#">Data Annotation Services</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul class="footer-contact">
+              <li><i class="fas fa-envelope"></i> jhunlester@example.com</li>
+              <li><i class="fas fa-phone"></i> +63 9673981159</li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i> Rosario, La Union, PH
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <p>© 2025 Jhun Lester — Crafted and clean code.</p>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      // Toggle menu from burger button
+      function toggleMenu() {
+        const nav = document.getElementById("navMenu");
+        const main = document.getElementById("mainContent");
+        nav.classList.toggle("active");
+        main.classList.toggle("blur");
+      }
+
+      window.onload = () => {
+        const loader = document.getElementById("pageLoader");
+        if (loader) {
+          setTimeout(() => {
+            loader.classList.add("hidden");
+          }, 700);
+        }
+
+        // ========== NEW: close menu when a nav link is clicked ==========
+        const nav = document.getElementById("navMenu");
+        const main = document.getElementById("mainContent");
+
+        nav.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            // close the menu and remove blur
+            nav.classList.remove("active");
+            main.classList.remove("blur");
+          });
+        });
+
+        // (Optional) When resizing back to desktop, ensure everything is reset
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 1000) {
+            nav.classList.remove("active");
+            main.classList.remove("blur");
+          }
+        });
+
+        // ========== TYPING EFFECTS ==========
+
+        const typedText = document.querySelector(".typed-text");
+        const cursor = document.querySelector(".cursor");
+        const text = "Hi, I’m Jhun Lester — Freelance IT Professional";
+        let index = 0;
+        let isDeleting = false;
+
+        function typeLoop() {
+          if (!typedText) return;
+
+          if (!isDeleting && index <= text.length) {
+            typedText.textContent = text.substring(0, index++);
+            setTimeout(typeLoop, 60);
+          } else if (isDeleting && index >= 0) {
+            typedText.textContent = text.substring(0, index--);
+            setTimeout(typeLoop, 40);
+          } else {
+            isDeleting = !isDeleting;
+            const pause = isDeleting ? 1200 : 400;
+            setTimeout(typeLoop, pause);
+          }
+        }
+        typeLoop();
+
+        const infoText =
+          "Full-Stack Developer & IT Educator | Passionate About Real-World Solutions and Digital Innovation";
+        const infoTyped = document.querySelector(".info-typed-text");
+        const infoCursor = document.querySelector(".info-cursor");
+        let infoIndex = 0;
+        let infoDeleting = false;
+
+        function typeInfo() {
+          if (!infoTyped) return;
+          if (!infoDeleting && infoIndex <= infoText.length) {
+            infoTyped.textContent = infoText.substring(0, infoIndex++);
+            setTimeout(typeInfo, 40);
+          } else if (infoDeleting && infoIndex >= 0) {
+            infoTyped.textContent = infoText.substring(0, infoIndex--);
+            setTimeout(typeInfo, 25);
+          } else {
+            infoDeleting = !infoDeleting;
+            const pause = infoDeleting ? 1200 : 500;
+            setTimeout(typeInfo, pause);
+          }
+        }
+        typeInfo();
+
+        const skillItems = document.querySelectorAll(".skill-item");
+        if ("IntersectionObserver" in window && skillItems.length > 0) {
+          const skillsObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                const el = entry.target;
+                const index = Array.from(skillItems).indexOf(el);
+                if (entry.isIntersecting) {
+                  el.style.transitionDelay = `${index * 0.45}s`;
+                  el.classList.add("is-visible");
+                } else {
+                  el.classList.remove("is-visible");
+                  el.style.transitionDelay = "0s";
+                }
+              });
+            },
+            {
+              threshold: 0.25,
+            }
+          );
+          skillItems.forEach((item) => skillsObserver.observe(item));
+        }
+
+        document.querySelectorAll(".circle-card").forEach((card) => {
+          const imgContainer = card.querySelector(".sphere-img");
+          let isDragging = false;
+          let startX, startY;
+          let currentX = 0,
+            currentY = 0;
+
+          const startDrag = (x, y) => {
+            isDragging = true;
+            startX = x;
+            startY = y;
+            card.style.cursor = "grabbing";
+          };
+          const onDrag = (x, y) => {
+            if (!isDragging) return;
+            const deltaX = x - startX;
+            const deltaY = y - startY;
+            currentX += deltaY * 0.5;
+            currentY += deltaX * 0.5;
+            imgContainer.style.transform = `rotateX(${currentX}deg) rotateY(${currentY}deg)`;
+            startX = x;
+            startY = y;
+          };
+          const endDrag = () => {
+            isDragging = false;
+            card.style.cursor = "grab";
+          };
+          card.addEventListener("mousedown", (e) =>
+            startDrag(e.clientX, e.clientY)
+          );
+          document.addEventListener("mousemove", (e) =>
+            onDrag(e.clientX, e.clientY)
+          );
+          document.addEventListener("mouseup", endDrag);
+          card.addEventListener("touchstart", (e) =>
+            startDrag(e.touches[0].clientX, e.touches[0].clientY)
+          );
+          card.addEventListener("touchmove", (e) =>
+            onDrag(e.touches[0].clientX, e.touches[0].clientY)
+          );
+          card.addEventListener("touchend", endDrag);
+        });
+      };
+
+      const serviceText = "Android App Development | Game Development";
+      const serviceTyped = document.querySelector(".service-typed-text");
+      const serviceCursor = document.querySelector(".service-cursor");
+      let svIndex = 0;
+      let svDeleting = false;
+
+      function typeServiceTitle() {
+        if (!serviceTyped) return;
+        if (!svDeleting && svIndex <= serviceText.length) {
+          serviceTyped.textContent = serviceText.substring(0, svIndex++);
+          setTimeout(typeServiceTitle, 45);
+        } else if (svDeleting && svIndex >= 0) {
+          serviceTyped.textContent = serviceText.substring(0, svIndex--);
+          setTimeout(typeServiceTitle, 25);
+        } else {
+          svDeleting = !svDeleting;
+          const pause = svDeleting ? 1200 : 600;
+          setTimeout(typeServiceTitle, pause);
+        }
+      }
+      typeServiceTitle();
+
+      const webAppText = "Web Applications";
+      const webAppTyped = document.querySelector(".webapp-typed-text");
+      const webAppCursor = document.querySelector(".webapp-cursor");
+      let waIndex = 0;
+      let waDeleting = false;
+
+      function typeWebAppTitle() {
+        if (!webAppTyped) return;
+        if (!waDeleting && waIndex <= webAppText.length) {
+          webAppTyped.textContent = webAppText.substring(0, waIndex++);
+          setTimeout(typeWebAppTitle, 45);
+        } else if (waDeleting && waIndex >= 0) {
+          webAppTyped.textContent = webAppText.substring(0, waIndex--);
+          setTimeout(typeWebAppTitle, 25);
+        } else {
+          waDeleting = !waDeleting;
+          const pause = waDeleting ? 1200 : 600;
+          setTimeout(typeWebAppTitle, pause);
+        }
+      }
+      typeWebAppTitle();
+    </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/68f70ce6511129194ce0f73c/1j82gkpao";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script>
+      const testimonialSwiper = new Swiper(".testimonials-swiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        centeredSlides: true,
+        loop: true,
+        speed: 700,
+
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
+
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+
+        breakpoints: {
+          640: { slidesPerView: 2, centeredSlides: true },
+          768: { slidesPerView: 3, centeredSlides: true },
+          1024: { slidesPerView: 4, centeredSlides: true }, // ← FIXED
+        },
+      });
+    </script>
+  </body>
+</html>

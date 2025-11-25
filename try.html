@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jhester — Portfolio (Prototype)</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/try.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <svg class="brand-logo" width="40" height="40" viewBox="0 0 24 24" aria-hidden="true">
+          <rect width="20" height="16" x="2" y="4" rx="2" fill="#3b6b6b"></rect>
+          <rect width="6" height="4" x="4" y="6" rx="1" fill="#cfe6e6"></rect>
+        </svg>
+        <span class="brand-text">Jhester <span class="muted">Portfolio</span></span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="hamburger"></span>
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Project</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#services">Service</a></li>
+          <li><a href="#testimonials">Testimonial</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <!-- HERO -->
+    <section class="hero container">
+      <div class="hero-media">
+        <!-- Placeholder image -->
+        <div class="placeholder-img tall" aria-hidden="true">
+          <svg viewBox="0 0 200 260" preserveAspectRatio="none"><rect width="200" height="260" rx="6" fill="#e9ecef"/></svg>
+        </div>
+      </div>
+      <div class="hero-content">
+        <h1>Hi, I’m Jhester — Frontend Developer</h1>
+        <p class="lead">I design and build user interfaces that are accessible, performant, and delightful. I focus on crafting responsive experiences, component-driven UI, and clear interactions.</p>
+        <p class="cta-row">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn ghost" href="#contact">Contact Me</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="panel alt">
+      <div class="container about">
+        <div class="about-content">
+          <h2>About Me</h2>
+          <p>I build web apps using modern HTML, CSS and JavaScript. I enjoy clean UI, scalable components, and pixel-perfect implementations of designs.</p>
+          <p>Specialties include responsive layouts, accessibility, performance optimization, and collaborating with designers to bring prototypes to life.</p>
+          <a class="btn primary" href="#projects">See my work</a>
+        </div>
+        <div class="about-media">
+          <div class="placeholder-img tall" aria-hidden="true">
+            <svg viewBox="0 0 200 260" preserveAspectRatio="none"><rect width="200" height="260" rx="6" fill="#f5f5f7"/></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLS GRID -->
+    <section id="tools" class="container tools">
+      <h3 class="section-title">Tools & Technologies</h3>
+      <ul class="tool-grid" aria-hidden="false">
+        <!-- just sample icons / boxes -->
+        <li class="tool"><span class="tool-box"></span><span class="tool-label">HTML</span></li>
+        <li class="tool"><span class="tool-box"></span><span class="tool-label">CSS</span></li>
+        <li class="tool"><span class="tool-box"></span><span class="tool-label">JavaScript</span></li>
+        <li class="tool"><span class="tool-box"></span><span class="tool-label">React</span></li>
+        <li class="tool"><span class="tool-box"></span><span class="tool-label">Tailwind</span></li>
+        <li class="tool"><span class="tool-box"></span><span class="tool-label">Figma</span></li>
+      </ul>
+    </section>
+
+    <!-- FEATURED PROJECTS -->
+    <section id="projects" class="panel">
+      <div class="container projects">
+        <h3 class="section-title">Featured Projects</h3>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="placeholder-img wide"><svg viewBox="0 0 400 220" preserveAspectRatio="none"><rect width="100%" height="100%" rx="8" fill="#dfe3e8"/></svg></div>
+            <div class="project-body">
+              <h4>Project Title One</h4>
+              <p>Short description about the project, the tech used and the outcomes. Clean design, responsive layout.</p>
+              <a class="btn ghost small" href="#">View case</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="placeholder-img wide"><svg viewBox="0 0 400 220" preserveAspectRatio="none"><rect width="100%" height="100%" rx="8" fill="#dfe3e8"/></svg></div>
+            <div class="project-body">
+              <h4>Project Title Two</h4>
+              <p>Short description for second project. Emphasis on performance and accessibility improvements.</p>
+              <a class="btn ghost small" href="#">View case</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES / CARDS -->
+    <section id="services" class="panel alt">
+      <div class="container services">
+        <h3 class="section-title">Services</h3>
+        <div class="service-cards">
+          <div class="service-card">
+            <div class="avatar-circle" aria-hidden="true"></div>
+            <h4>UI Design</h4>
+            <p>Design systems, component libraries, and pixel-perfect UIs.</p>
+            <a class="service-cta" href="#">Learn more</a>
+          </div>
+          <div class="service-card">
+            <div class="avatar-circle" aria-hidden="true"></div>
+            <h4>Frontend Development</h4>
+            <p>Modern, maintainable code with semantic HTML and clean CSS.</p>
+            <a class="service-cta" href="#">Learn more</a>
+          </div>
+          <div class="service-card">
+            <div class="avatar-circle" aria-hidden="true"></div>
+            <h4>Performance Audit</h4>
+            <p>Improve load times, a11y, and user experience.</p>
+            <a class="service-cta" href="#">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG / LIST -->
+    <section class="container blog-list">
+      <h3 class="section-title">Articles & Updates</h3>
+      <ul class="posts">
+        <li class="post">
+          <div class="thumb small"></div>
+          <div class="post-body">
+            <h4>How I optimize front-end builds</h4>
+            <p>Short summary of the article, key takeaways and why it matters.</p>
+          </div>
+        </li>
+        <li class="post">
+          <div class="thumb small"></div>
+          <div class="post-body">
+            <h4>Designing for accessibility</h4>
+            <p>Brief notes on a11y-first approaches when building interfaces.</p>
+          </div>
+        </li>
+        <li class="post">
+          <div class="thumb small"></div>
+          <div class="post-body">
+            <h4>Working with design systems</h4>
+            <p>Advantages of a component driven approach for teams and apps.</p>
+          </div>
+        </li>
+      </ul>
+      <div class="center">
+        <button class="btn ghost">Load more</button>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="panel alt">
+      <div class="container testimonials">
+        <h3 class="section-title">What clients say</h3>
+        <div class="testimonials-grid">
+          <blockquote class="testimonial-card">
+            <div class="quote-avatar" aria-hidden="true"></div>
+            <p>"Great collaboration — delivered on time and exceeded expectations."</p>
+            <footer>— Client A</footer>
+          </blockquote>
+          <blockquote class="testimonial-card">
+            <div class="quote-avatar" aria-hidden="true"></div>
+            <p>"Crafted a beautiful, accessible site with clean code."</p>
+            <footer>— Client B</footer>
+          </blockquote>
+          <blockquote class="testimonial-card">
+            <div class="quote-avatar" aria-hidden="true"></div>
+            <p>"Reliable, communicative, and detail-oriented."</p>
+            <footer>— Client C</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP / CONTACT -->
+    <section id="contact" class="container map-panel">
+      <h3 class="section-title">Find me</h3>
+      <div class="map-wrap" aria-hidden="true">
+        <!-- stylized map placeholder with pin -->
+        <svg viewBox="0 0 1000 360" class="map-svg" preserveAspectRatio="none">
+          <rect width="100%" height="100%" rx="12" fill="#bfc6cc"></rect>
+          <!-- diagonal shapes -->
+          <g fill="#e9ecef">
+            <rect x="40" y="20" width="200" height="60" rx="6" transform="rotate(-18 140 50)"></rect>
+            <rect x="260" y="120" width="500" height="60" rx="6" transform="rotate(12 510 150)"></rect>
+            <rect x="650" y="40" width="300" height="80" rx="6" transform="rotate(-6 800 80)"></rect>
+          </g>
+          <!-- pin -->
+          <g transform="translate(300,160)">
+            <circle cx="0" cy="0" r="16" fill="#6b9f2d"></circle>
+            <path d="M0 36 C-12 20 -12 0 0 -16 C12 0 12 20 0 36 Z" fill="#6b9f2d"></path>
+            <circle cx="0" cy="-6" r="6" fill="#ffffff"></circle>
+          </g>
+        </svg>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Jhester Portfolio — Built with care.</p>
+      <p class="socials">
+        <a href="#" aria-label="Twitter">Twitter</a> · <a href="#" aria-label="LinkedIn">LinkedIn</a> · <a href="#" aria-label="GitHub">GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>
