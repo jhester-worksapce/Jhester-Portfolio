@@ -202,10 +202,6 @@ iframe {
 }
 
 /* ================== HEADER / NAV ================== */
-main#mainContent {
-  padding-top: 100px;
-}
-
 header {
   font-weight: 700;
   background: #f8f8f8;
@@ -213,33 +209,12 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  /* IMPORTANT: must be fixed for hide-on-scroll */
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   z-index: 1000;
-
-  /* NEW → slide animation for show/hide */
-  transition: transform 0.35s ease;
 }
 
-/* NEW → hide header when scrolling down */
-header.hide-header {
-  transform: translateY(-100%);
-}
-
-/* NEW → show header when scrolling up */
-header.show-header {
-  transform: translateY(0);
-}
-
-/* ===========================
-   LOGO
-=========================== */
 .logo {
   display: flex;
   align-items: center;
@@ -251,9 +226,6 @@ header.show-header {
   margin-right: 10px;
 }
 
-/* ===========================
-   NAV DESKTOP
-=========================== */
 nav {
   display: flex;
   gap: 20px;
@@ -290,16 +262,12 @@ nav a:hover {
   color: #84ae92;
 }
 
-/* ===========================
-   MOBILE MENU
-=========================== */
 .menu-toggle {
   display: none;
   font-size: 22px;
   cursor: pointer;
 }
 
-/* Blur content when menu opens */
 .blur {
   filter: blur(10px);
   pointer-events: none;
@@ -307,23 +275,22 @@ nav a:hover {
   transition: filter 0.3s ease;
 }
 
-/* ===========================
-   RESPONSIVE NAV
-=========================== */
 @media (max-width: 1000px) {
   header {
     padding: 10px 16px;
   }
-
   nav {
-    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    position: absolute;
     top: 60px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
     background: #fff;
     flex-direction: column;
     align-items: center;
+    width: 90%;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -1224,6 +1191,7 @@ nav a:hover {
   overflow: hidden;
 }
 
+
 .map-section::before {
   content: none;
 }
@@ -1789,3 +1757,4 @@ nav a:hover {
     padding-right: 16px;
   }
 }
+
