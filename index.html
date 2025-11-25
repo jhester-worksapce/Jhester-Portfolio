@@ -992,7 +992,7 @@
         <div class="footer-divider"></div>
 
         <div class="footer-bottom">
-          <p>© 2025 Jhun Lester — Crafted and clean code.</p>
+          <p>© 2025 Jhun Lester</p>
         </div>
       </footer>
     </main>
@@ -1005,7 +1005,6 @@
         nav.classList.toggle("active");
         main.classList.toggle("blur");
       }
-
       window.onload = () => {
         const loader = document.getElementById("pageLoader");
         if (loader) {
@@ -1013,7 +1012,6 @@
             loader.classList.add("hidden");
           }, 700);
         }
-
         // ========== NEW: close menu when a nav link is clicked ==========
         const nav = document.getElementById("navMenu");
         const main = document.getElementById("mainContent");
@@ -1033,18 +1031,33 @@
             main.classList.remove("blur");
           }
         });
+        let lastScroll = window.scrollY;
+        const header = document.querySelector("header");
+
+        window.addEventListener("scroll", () => {
+          const currentScroll = window.scrollY;
+
+          if (currentScroll > lastScroll && currentScroll > 80) {
+            // scrolling down → hide header
+            header.classList.add("hide-header");
+            header.classList.remove("show-header");
+          } else {
+            // scrolling up → show header
+            header.classList.remove("hide-header");
+            header.classList.add("show-header");
+          }
+
+          lastScroll = currentScroll;
+        });
 
         // ========== TYPING EFFECTS ==========
-
         const typedText = document.querySelector(".typed-text");
         const cursor = document.querySelector(".cursor");
         const text = "Hi, I’m Jhun Lester — Freelance IT Professional";
         let index = 0;
         let isDeleting = false;
-
         function typeLoop() {
           if (!typedText) return;
-
           if (!isDeleting && index <= text.length) {
             typedText.textContent = text.substring(0, index++);
             setTimeout(typeLoop, 60);
@@ -1058,14 +1071,12 @@
           }
         }
         typeLoop();
-
         const infoText =
           "Full-Stack Developer & IT Educator | Passionate About Real-World Solutions and Digital Innovation";
         const infoTyped = document.querySelector(".info-typed-text");
         const infoCursor = document.querySelector(".info-cursor");
         let infoIndex = 0;
         let infoDeleting = false;
-
         function typeInfo() {
           if (!infoTyped) return;
           if (!infoDeleting && infoIndex <= infoText.length) {
@@ -1081,7 +1092,6 @@
           }
         }
         typeInfo();
-
         const skillItems = document.querySelectorAll(".skill-item");
         if ("IntersectionObserver" in window && skillItems.length > 0) {
           const skillsObserver = new IntersectionObserver(
@@ -1104,14 +1114,12 @@
           );
           skillItems.forEach((item) => skillsObserver.observe(item));
         }
-
         document.querySelectorAll(".circle-card").forEach((card) => {
           const imgContainer = card.querySelector(".sphere-img");
           let isDragging = false;
           let startX, startY;
           let currentX = 0,
             currentY = 0;
-
           const startDrag = (x, y) => {
             isDragging = true;
             startX = x;
@@ -1148,13 +1156,11 @@
           card.addEventListener("touchend", endDrag);
         });
       };
-
       const serviceText = "Android App Development | Game Development";
       const serviceTyped = document.querySelector(".service-typed-text");
       const serviceCursor = document.querySelector(".service-cursor");
       let svIndex = 0;
       let svDeleting = false;
-
       function typeServiceTitle() {
         if (!serviceTyped) return;
         if (!svDeleting && svIndex <= serviceText.length) {
@@ -1170,13 +1176,11 @@
         }
       }
       typeServiceTitle();
-
       const webAppText = "Web Applications";
       const webAppTyped = document.querySelector(".webapp-typed-text");
       const webAppCursor = document.querySelector(".webapp-cursor");
       let waIndex = 0;
       let waDeleting = false;
-
       function typeWebAppTitle() {
         if (!webAppTyped) return;
         if (!waDeleting && waIndex <= webAppText.length) {
