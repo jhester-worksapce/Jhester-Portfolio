@@ -440,6 +440,8 @@ nav a:hover {
   line-height: 1.6;
   margin-bottom: 1rem;
   color: #333;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .button-group {
@@ -514,6 +516,7 @@ nav a:hover {
   margin-left: 4px;
   animation: blink 0.7s infinite;
 }
+
 /* ========== SKILLS SECTION ========== */
 .skills-section {
   background: none;
@@ -642,7 +645,7 @@ nav a:hover {
 
 .card-slider {
   width: 100%;
-  max-width: 1080px; /* keeps your nice large layout on desktop */
+  max-width: 1080px;
   overflow: hidden;
   margin: 0 auto;
   position: relative;
@@ -875,7 +878,9 @@ nav a:hover {
   margin-bottom: 1rem;
   color: #333;
   line-height: 1.6;
-  text-align: justify;
+  text-align: justify !important;
+  text-justify: inter-word;
+  text-indent: 1.5rem; /* indent instead of &nbsp; */
 }
 
 .services-title {
@@ -913,8 +918,10 @@ nav a:hover {
     padding: 0;
   }
 
+  /* REMOVE center alignment on mobile */
   .row-text p {
-    text-align: center;
+    text-align: justify !important;
+    text-indent: 1.2rem;
   }
 }
 
@@ -1190,7 +1197,6 @@ nav a:hover {
   position: relative;
   overflow: hidden;
 }
-
 
 .map-section::before {
   content: none;
@@ -1757,4 +1763,3 @@ nav a:hover {
     padding-right: 16px;
   }
 }
-
