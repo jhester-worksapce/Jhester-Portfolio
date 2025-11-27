@@ -378,6 +378,7 @@ nav a:hover {
 
 .about-text .paragraph {
   text-indent: 40px;
+  color: #333;
 }
 
 /* About responsive */
@@ -426,6 +427,7 @@ nav a:hover {
 .info-text {
   flex: 1;
   min-width: 300px;
+  color: #333;
 }
 
 .info-text h2 {
@@ -609,6 +611,9 @@ nav a:hover {
   font-size: 0.9rem;
   line-height: 1.5;
   color: #4b5c59;
+  text-align: justify;
+  text-justify: inter-word;
+  text-indent: 25px; /* ← INDENT ADDED */
 }
 
 .skill-item:hover {
@@ -880,7 +885,7 @@ nav a:hover {
   line-height: 1.6;
   text-align: justify !important;
   text-justify: inter-word;
-  text-indent: 1.5rem; /* indent instead of &nbsp; */
+  text-indent: 1.5rem;
 }
 
 .services-title {
@@ -918,7 +923,6 @@ nav a:hover {
     padding: 0;
   }
 
-  /* REMOVE center alignment on mobile */
   .row-text p {
     text-align: justify !important;
     text-indent: 1.2rem;
@@ -999,6 +1003,7 @@ nav a:hover {
   margin-bottom: 1.25rem;
   line-height: 1.6;
   text-align: justify;
+  color: #333;
 }
 
 .project-body strong {
@@ -1135,6 +1140,7 @@ nav a:hover {
   margin-bottom: 1rem;
   text-align: justify;
   flex-grow: 1;
+  color: #333;
 }
 
 .testimonials-cta {
