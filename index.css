@@ -311,6 +311,10 @@ nav a:hover {
   }
 }
 
+#mainContent{
+  margin-top: -90px;
+}
+
 /* ================== HOME / ABOUT ================== */
 .about {
   padding: 40px 30px;
