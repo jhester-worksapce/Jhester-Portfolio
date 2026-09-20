@@ -1,0 +1,13 @@
+{
+  "name": "jhun-lester-cervantes-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs && node --test scripts/calendar.test.mjs scripts/chat.test.mjs scripts/build.test.mjs",
+    "preview": "node scripts/serve.mjs dist"
+  },
+  "engines": { "node": "24.x" }
+}

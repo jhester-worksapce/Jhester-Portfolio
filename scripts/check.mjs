@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import { readFile, access } from 'node:fs/promises';
+const html = await readFile('index.html', 'utf8');
+const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+assert.equal(new Set(ids).size, ids.length, 'Duplicate IDs');
+assert.equal((html.match(/<h1\b/g) || []).length, 1, 'Exactly one main heading');
+for (const [, target] of html.matchAll(/href="#([^"]+)"/g)) assert(ids.includes(target), `Missing section ${target}`);
+for (const [, file] of html.matchAll(/(?:src|href)="(\.\/[^"#]+)"/g)) await access(file);
+const schema = JSON.parse(html.match(/id="profile-schema">([\s\S]*?)<\/script>/)[1]);
+assert.equal(schema.name, 'Jhun Lester Cervantes');
+assert(html.includes('<meta name="description"'));
+assert(!html.includes('href="#"'), 'Placeholder links');
+console.log('Passed: local assets, section links, unique IDs, main heading, profile data, and metadata.');
