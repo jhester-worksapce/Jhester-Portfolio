@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir, cp, rm } from 'node:fs/promises';
 let html = await readFile('index.html', 'utf8');
 const isPreview = process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production';
-const rawUrl = isPreview ? undefined : (process.env.SITE_URL || (process.env.VERCEL_ENV === 'production' && process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined));
+const rawUrl = isPreview ? undefined : (process.env.SITE_URL || (process.env.VERCEL_ENV === 'production' ? (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : 'https://jhester-portfolio.vercel.app') : undefined));
 let base;
 if (rawUrl) {
   const parsed = new URL(rawUrl);

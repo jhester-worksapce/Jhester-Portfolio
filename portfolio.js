@@ -14,10 +14,22 @@ function setTheme(theme) {
   $('#theme-toggle').setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
   $('meta[name="theme-color"]').content = theme === 'dark' ? '#151816' : '#fafaf8';
 }
-try { setTheme(localStorage.getItem('portfolio-theme') === 'dark' ? 'dark' : 'light'); } catch { setTheme('light'); }
+const systemTheme = matchMedia('(prefers-color-scheme: dark)');
+let themePreference = 'system';
+function applyThemePreference(preference) {
+  themePreference = ['light', 'dark', 'system'].includes(preference) ? preference : 'system';
+  setTheme(themePreference === 'system' ? (systemTheme.matches ? 'dark' : 'light') : themePreference);
+  $$('[data-theme-choice]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === themePreference)));
+}
+try { applyThemePreference(localStorage.getItem('portfolio-theme')); } catch { applyThemePreference('system'); }
+$$('[data-theme-choice]').forEach(button => button.addEventListener('click', () => {
+  applyThemePreference(button.dataset.themeChoice);
+  try { localStorage.setItem('portfolio-theme', themePreference); } catch { /* Optional persistence. */ }
+}));
+systemTheme.addEventListener('change', () => { if (themePreference === 'system') applyThemePreference('system'); });
 $('#theme-toggle').addEventListener('click', () => {
   const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-  setTheme(theme);
+  applyThemePreference(theme);
   try { localStorage.setItem('portfolio-theme', theme); } catch { /* Theme still works without storage. */ }
 });
 

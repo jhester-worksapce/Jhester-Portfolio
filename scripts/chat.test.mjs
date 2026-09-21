@@ -31,7 +31,18 @@ test('upstream failures never leak credentials or provider response bodies', asy
 });
 
 test('Live Server origin is allowed only for the local API bridge', async () => {
-  const local = { method: 'POST', headers: { origin: 'http://127.0.0.1:5500', host: '127.0.0.1:4175', 'content-type': 'application/json' } };
+  const local = { method: 'POST', headers: { origin: 'http://127.0.0.1:5500', host: '127.0.0.1:4173', 'content-type': 'application/json' } };
   assert.equal((await invoke({ env: {} }, local)).status, 503);
   assert.equal((await invoke({ env: { VERCEL: '1' } }, local)).status, 403);
+});
+
+test('accepts the Google key alias and trims pasted whitespace', async () => {
+  const result = await invoke({ env: { GEMINI_API_KEY: '   ', GOOGLE_API_KEY: ' alias-secret\n' }, fetchImpl: async (_, options) => {
+    assert.equal(options.headers['x-goog-api-key'], 'alias-secret');
+    return { ok: true, json: async () => ({ candidates: [{ content: { parts: [{ text: 'Hello.' }] } }] }) };
+  } });
+  assert.deepEqual(result, { status: 200, data: { answer: 'Hello.' } });
+  const missing = await invoke({ env: { GEMINI_API_KEY: '  ' } });
+  assert.equal(missing.status, 503);
+  assert.equal(missing.data.code, 'CHAT_NOT_CONFIGURED');
 });

@@ -23,7 +23,7 @@
     <script src="./portfolio.js" defer></script>
     <script src="./features.js" type="module"></script>
     <script type="application/ld+json"
-        id="profile-schema">{"@context":"https://schema.org","@type":"Person","name":"Jhun Lester Cervantes","alternateName":"Jhester","jobTitle":"Full-Stack Developer & IT Educator","description":"Freelance software developer and IT educator based in La Union, Philippines.","homeLocation":{"@type":"Place","name":"La Union, Philippines"},"sameAs":["https://github.com/Jhester11","https://www.linkedin.com/in/jhun-lester-cervantes-bb4253325/","https://www.instagram.com/_jhester11/"]}</script>
+        id="profile-schema">{"@context":"https://schema.org","@type":"Person","name":"Jhun Lester Cervantes","alternateName":["Jhun Lester","Jhester"],"jobTitle":"Full-Stack Developer & IT Educator","description":"Freelance software developer and IT educator based in La Union, Philippines.","homeLocation":{"@type":"Place","name":"La Union, Philippines"},"sameAs":["https://github.com/Jhester11","https://www.linkedin.com/in/jhun-lester-cervantes-bb4253325/","https://www.instagram.com/_jhester11/"]}</script>
 </head>
 
 <body>
@@ -36,8 +36,8 @@
                     EDUCATOR</small></span></a>
         <button class="search-trigger" data-open-search><span aria-hidden="true">⌕</span> Search anything <kbd>Ctrl
                 K</kbd></button>
-        <button class="ask-sidebar" data-open-ai><span aria-hidden="true">✧</span> Ask my AI
-            <small>AI</small></button>
+        <button class="ask-sidebar" data-open-ai><span aria-hidden="true">✧</span> Ask anything <kbd>Alt K</kbd></button>
+        <button class="ask-sidebar typing-trigger" data-open-typing><span aria-hidden="true">⌨</span> Typing test <kbd>Alt J</kbd></button>
         <p class="nav-label">WORKSPACE</p>
         <nav aria-label="Main navigation">
             <a href="#home" class="active" aria-current="location"><span aria-hidden="true">⌂</span> Overview <span
@@ -53,12 +53,12 @@
                 mind?<br>Let’s make it happen.</p><a href="mailto:jhunlester88@gmail.com">Get in touch
                 <span>↗</span></a></div>
         <div class="sidebar-bottom">
-            <div class="theme-row"><span>Make yourself at home</span><button id="theme-toggle" class="icon-button"
+            <div class="theme-row"><div class="theme-options" role="group" aria-label="Appearance"><button data-theme-choice="system" aria-label="System theme" title="System theme">▣</button><button data-theme-choice="light" aria-label="Light theme" title="Light theme">☼</button><button data-theme-choice="dark" aria-label="Dark theme" title="Dark theme">☾</button></div><button id="sound-toggle" class="icon-button" aria-label="Sound effects" aria-pressed="false" title="Enable sounds and play ringtone">♪</button><button id="theme-toggle" hidden
                     aria-label="Switch to dark theme" aria-pressed="false">◐</button></div><a
                 href="https://github.com/Jhester11" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a
                 href="https://www.linkedin.com/in/jhun-lester-cervantes-bb4253325/" target="_blank"
                 rel="noopener noreferrer">LinkedIn ↗</a>
-            <p>Built with purpose. From the Philippines.</p>
+            <p class="sidebar-contact">For work, collabs & everything else, reach me at<br><a href="mailto:jhunlester88@gmail.com">✉ jhunlester88@gmail.com</a></p>
         </div>
     </aside>
     <div class="page-shell">
@@ -283,20 +283,31 @@
         <span class="ai-badge">AI</span></button>
     <dialog id="ai-dialog" aria-labelledby="ai-title">
         <div class="dialog-header">
-            <h2 id="ai-title" class="sr-only">Chat with Jhun’s assistant</h2>
+            <span class="ai-eyebrow">JHUN’S PORTFOLIO ASSISTANT</span>
             <button id="ai-clear" class="icon-button" aria-label="Clear conversation" title="Clear conversation">↺</button>
             <button class="icon-button" data-close-dialog aria-label="Close AI chat">×</button>
         </div>
+        <div class="ai-content">
+        <h2 id="ai-title">what do you want to ask?</h2>
         <p id="ai-status" class="sr-only" role="status"></p>
         <div id="ai-messages" role="log" aria-label="Conversation" aria-live="polite"></div>
         <div class="ai-suggestions"><button data-ai-prompt="What projects has Jhun built?">Explore projects
                 ↗</button><button data-ai-prompt="What are Jhun's skills?">Skills & tools ↗</button><button
                 data-ai-prompt="How can I contact Jhun?">Work together ↗</button></div>
         <form id="ai-form"><label for="ai-input" class="sr-only">Your question</label><textarea id="ai-input" rows="2"
-                maxlength="1200" placeholder="Ask about Jhun’s work…" required></textarea><button id="ai-send"
+                maxlength="1200" placeholder="Ask about my work, skills, or your next project…" required></textarea><button id="ai-send"
                 type="submit" class="button primary">Send ↑</button><button id="ai-stop" type="button"
                 class="button secondary" hidden>Stop</button></form>
-
+        <p class="ai-disclaimer">AI answers about Jhun · Enter to send · Esc to close · <a href="mailto:jhunlester88@gmail.com">Email Jhun ↗</a></p>
+        </div>
+    </dialog>
+    <dialog id="typing-dialog" aria-labelledby="typing-title">
+        <div class="dialog-header"><h2 id="typing-title">a little typing break.</h2><button class="icon-button" data-close-dialog aria-label="Close typing test">×</button></div>
+        <p>30 seconds. Start typing to begin.</p>
+        <div class="typing-stats"><span><b id="typing-wpm">0</b> wpm</span><span><b id="typing-accuracy">100</b>% accuracy</span><span><b id="typing-time">30</b>s left</span></div>
+        <p id="typing-passage"></p>
+        <label class="sr-only" for="typing-input">Type the passage above</label><textarea id="typing-input" rows="3" placeholder="Start here…" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
+        <p id="typing-result" role="status"></p><button id="typing-restart" class="button secondary">↻ Restart test</button>
     </dialog>
 </body>
 

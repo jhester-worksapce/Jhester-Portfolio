@@ -14,3 +14,23 @@
 @media(max-width:560px){.portrait-stage{margin-top:-25px}}
 
 #ai-dialog #ai-status.sr-only{margin:0;min-height:0}#ai-dialog .dialog-header{justify-content:flex-end;gap:8px}#ai-dialog #ai-messages{max-height:52dvh}
+/* Full-screen question space, inspired by the supplied reference. */
+body:has(dialog[open]){overflow:hidden}
+#ai-dialog{inset:0;margin:0;width:100%;max-width:none;height:100dvh;max-height:none;border:0;border-radius:0;box-shadow:none;padding:32px clamp(24px,6.5vw,120px);background:rgba(20,20,23,.91);color:#f2f2f4;--ink:#f2f2f4;--muted:#aaaab4;--line:#ffffff25;--surface:#202024;--bg:transparent;--soft:#ffffff0c;--green:#b7d4bc;--green-soft:#ffffff08}
+#ai-dialog::backdrop{background:#10101490;backdrop-filter:blur(14px)}
+#ai-dialog .dialog-header{margin:0;justify-content:flex-end}#ai-dialog .ai-eyebrow{margin:0 auto 0 0;color:#a3a3ad;font-size:10px;letter-spacing:1.5px}
+#ai-dialog .icon-button{background:transparent;color:#aaaab4;border-color:transparent}#ai-dialog .icon-button:hover{background:#ffffff0c;color:white}
+.ai-content{width:min(1050px,100%);margin:clamp(60px,29vh,290px) auto 40px 0;transition:margin .2s}
+#ai-title{font:clamp(27px,3vw,52px)/1.25 var(--mono);letter-spacing:-1.5px;margin:0 0 26px;font-weight:400}
+#ai-dialog:has(.chat-message) .ai-content{margin-top:45px}#ai-dialog:has(.chat-message) #ai-title{font-size:24px;color:#a3a3ad}
+#ai-dialog #ai-form{border:0;border-bottom:1px solid #ffffff20;border-radius:0;padding:0 0 12px;align-items:center;background:transparent}
+#ai-dialog #ai-input{font:clamp(16px,1.4vw,22px)/1.6 var(--mono);min-height:64px;resize:none;outline:none;padding:8px 0;color:#eee}
+#ai-input::placeholder{color:#6f6f7b}#ai-dialog #ai-form:focus-within{border-color:#ffffff70}#ai-dialog #ai-form .button{background:#ffffff0c;border-color:#ffffff20;color:#ddd}
+#ai-dialog .ai-suggestions{margin:0 0 24px}#ai-dialog .ai-suggestions button{border:0;padding:5px 16px 5px 0;color:#9999a5;font:12px var(--mono)}#ai-dialog .ai-suggestions button:hover{color:white}
+#ai-dialog .ai-disclaimer{text-align:left;color:#858590;font:10px/1.8 var(--mono);margin-top:18px}
+#ai-dialog #ai-messages{max-height:42dvh;padding-right:16px;margin-bottom:18px}#ai-dialog .chat-message{font:15px/1.8 var(--mono);border-radius:5px}#ai-dialog .chat-message.assistant{padding-left:0;background:none}#ai-dialog .chat-message.error{color:#edb7ab}
+.ask-sidebar{border:0;padding:6px 4px;margin:0 0 6px;color:var(--muted);font-size:11px;gap:7px}.ask-sidebar>span{font-size:15px}.typing-trigger{margin-bottom:22px}.ask-sidebar kbd{font-size:9px}
+.theme-options{display:flex;border:1px solid var(--line);border-radius:30px;padding:3px;gap:2px}.theme-options button{width:27px;height:27px;border-radius:50%;font-size:17px;color:var(--muted)}.theme-options button[aria-pressed=true]{background:var(--soft);color:var(--ink)}#sound-toggle{border-radius:50%;width:34px}#sound-toggle[aria-pressed=true]{background:var(--green-soft);color:var(--green)}.sidebar-bottom .sidebar-contact{display:block;font-size:10px;line-height:1.9}.sidebar-contact a{display:inline-block;margin-top:5px;color:var(--ink);font-size:10px}
+#typing-dialog{width:min(780px,calc(100% - 32px));padding:30px;font-family:var(--mono)}#typing-dialog h2{font:24px var(--mono)}#typing-dialog p{font-size:13px}.typing-stats{display:flex;gap:24px;margin:28px 0;color:var(--muted);font-size:12px}.typing-stats b{font-size:25px;color:var(--green);font-weight:400}#typing-passage{font-size:20px!important;line-height:1.8;color:var(--muted);max-height:170px;overflow:auto;white-space:pre-wrap}.typed-correct{color:var(--green)}.typed-wrong{color:#bd5147;background:#bd514715;text-decoration:underline}#typing-input{width:100%;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);padding:14px;resize:vertical;font:16px/1.6 var(--mono)}#typing-result{min-height:24px}
+@media(max-width:560px){#ai-dialog{padding:20px}.ai-content{margin-top:24vh}#ai-title{letter-spacing:-1px}#ai-dialog:has(.chat-message) .ai-content{margin-top:25px}#ai-dialog .ai-eyebrow{font-size:8px}#ai-dialog #ai-messages{max-height:38dvh}#ai-dialog .chat-message{font-size:13px}#ai-dialog #ai-input{font-size:16px}.typing-stats{gap:16px}#typing-dialog{padding:20px}}
+@media(prefers-reduced-motion:reduce){.ai-content{transition:none}}

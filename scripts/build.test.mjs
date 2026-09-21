@@ -10,6 +10,10 @@ test('Vercel production builds are indexable and previews clear old metadata', (
     assert.match(readFileSync('dist/index.html', 'utf8'), /rel="canonical" href="https:\/\/portfolio.example\/"/);
     assert.match(readFileSync('dist/robots.txt', 'utf8'), /Allow: \//);
     assert.match(readFileSync('dist/sitemap.xml', 'utf8'), /https:\/\/portfolio.example\//);
+    env.VERCEL_PROJECT_PRODUCTION_URL = ''; build();
+    const fallback = readFileSync('dist/index.html', 'utf8');
+    assert.match(fallback, /rel="canonical" href="https:\/\/jhester-portfolio.vercel.app\/"/);
+    assert.match(fallback, /"alternateName":\["Jhun Lester","Jhester"\]/);
     env.VERCEL_ENV = 'preview'; env.SITE_URL = 'https://production.example'; build();
     const preview = readFileSync('dist/index.html', 'utf8');
     assert.match(preview, /noindex, nofollow/); assert.doesNotMatch(preview, /rel="canonical"/);

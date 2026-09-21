@@ -96,3 +96,97 @@ if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver(entries => { if (entries.some(entry => entry.isIntersecting)) { observer.disconnect(); loadContributions(); } }, { rootMargin: '400px' });
   observer.observe(document.querySelector('#github'));
 } else loadContributions();
+
+// Compact sidebar utilities. Test results remain local to this page.
+const typingDialog = document.querySelector('#typing-dialog');
+const typingInput = document.querySelector('#typing-input');
+const passage = 'build things that matter and keep learning every day. a thoughtful website starts with people and grows through small ideas. write clear code, share what you know, and make something useful for the world. every new project is a chance to try again and create a better experience. ';
+const targetPassage = passage.repeat(4);
+let startedAt = 0, typingTimer, soundEnabled = false, audioContext;
+function renderPassage() {
+  const typed = typingInput.value;
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i < targetPassage.length; i++) {
+    const span = document.createElement('span'); span.textContent = targetPassage[i];
+    if (i < typed.length) span.className = typed[i] === targetPassage[i] ? 'typed-correct' : 'typed-wrong';
+    fragment.append(span);
+  }
+  document.querySelector('#typing-passage').replaceChildren(fragment);
+  document.querySelector('#typing-passage').children[typed.length]?.scrollIntoView({ block: 'nearest' });
+}
+function updateTyping() {
+  const elapsed = startedAt ? Math.min(30, (performance.now() - startedAt) / 1000) : 0;
+  const typed = typingInput.value;
+  const correct = [...typed].filter((character, index) => character === targetPassage[index]).length;
+  const wpm = elapsed > 0 ? Math.round(correct / 5 / (elapsed / 60)) : 0;
+  const accuracy = typed.length ? Math.round(correct / typed.length * 100) : 100;
+  document.querySelector('#typing-wpm').textContent = wpm;
+  document.querySelector('#typing-accuracy').textContent = accuracy;
+  document.querySelector('#typing-time').textContent = Math.ceil(30 - elapsed);
+  if (elapsed >= 30 || typed.length >= targetPassage.length) {
+    clearInterval(typingTimer); typingInput.disabled = true;
+    document.querySelector('#typing-result').textContent = `Finished! ${wpm} words per minute with ${accuracy}% accuracy.`;
+  }
+}
+function resetTyping() {
+  clearInterval(typingTimer); startedAt = 0; typingInput.value = ''; typingInput.disabled = false;
+  document.querySelector('#typing-result').textContent = ''; renderPassage(); updateTyping(); typingInput.focus();
+}
+function openTyping() {
+  if (typingDialog.open) return;
+  document.querySelector('dialog[open]')?.close(); typingDialog.showModal(); resetTyping();
+}
+document.querySelectorAll('[data-open-typing]').forEach(button => button.addEventListener('click', openTyping));
+document.querySelector('#typing-restart').addEventListener('click', resetTyping);
+typingDialog.addEventListener('close', () => clearInterval(typingTimer));
+typingInput.maxLength = targetPassage.length;
+typingInput.addEventListener('paste', event => event.preventDefault());
+typingInput.addEventListener('drop', event => event.preventDefault());
+typingInput.addEventListener('beforeinput', event => { if (startedAt && performance.now() - startedAt >= 30000) { event.preventDefault(); updateTyping(); } });
+typingInput.addEventListener('input', () => {
+  if (!startedAt && typingInput.value.length) { startedAt = performance.now(); typingTimer = setInterval(updateTyping, 100); }
+  renderPassage(); updateTyping();
+  if (soundEnabled) {
+    try {
+      audioContext ||= new AudioContext(); void audioContext.resume();
+      const oscillator = audioContext.createOscillator(), gain = audioContext.createGain();
+      oscillator.frequency.value = 480; gain.gain.setValueAtTime(.025, audioContext.currentTime);
+      gain.gain.exponentialRampToValueAtTime(.001, audioContext.currentTime + .035);
+      oscillator.connect(gain); gain.connect(audioContext.destination); oscillator.start(); oscillator.stop(audioContext.currentTime + .04);
+    } catch { /* Sound is optional. */ }
+  }
+});
+document.querySelector('#sound-toggle').addEventListener('click', async event => {
+  const button = event.currentTarget;
+  soundEnabled = !soundEnabled; button.setAttribute('aria-pressed', String(soundEnabled));
+  button.title = soundEnabled ? 'Mute sounds' : 'Enable sounds and play ringtone';
+  if (!soundEnabled) {
+    const previousContext = audioContext; audioContext = undefined;
+    await previousContext?.close().catch(() => {}); return;
+  }
+  try {
+    audioContext ||= new AudioContext();
+    await audioContext.resume();
+    if (!soundEnabled) return;
+    // A short original chime, synthesized locally with no audio download.
+    [523.25, 659.25, 783.99, 1046.5].forEach((frequency, index) => {
+      const at = audioContext.currentTime + index * .14;
+      const oscillator = audioContext.createOscillator(), gain = audioContext.createGain();
+      oscillator.type = 'sine'; oscillator.frequency.value = frequency;
+      gain.gain.setValueAtTime(0, at);
+      gain.gain.linearRampToValueAtTime(.06, at + .015);
+      gain.gain.exponentialRampToValueAtTime(.001, at + .3);
+      oscillator.connect(gain); gain.connect(audioContext.destination);
+      oscillator.onended = () => { oscillator.disconnect(); gain.disconnect(); };
+      oscillator.start(at); oscillator.stop(at + .32);
+    });
+  } catch {
+    soundEnabled = false; button.setAttribute('aria-pressed', 'false');
+    button.title = 'Sound unavailable in this browser';
+  }
+});
+document.addEventListener('keydown', event => {
+  if (!event.altKey || event.ctrlKey || event.metaKey || event.repeat) return;
+  if (event.code === 'KeyJ') { event.preventDefault(); openTyping(); }
+  if (event.code === 'KeyK') { event.preventDefault(); document.querySelector('[data-open-ai]').click(); }
+});

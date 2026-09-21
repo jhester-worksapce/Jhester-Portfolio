@@ -4,7 +4,7 @@ export function createChatHandler({ fetchImpl = fetch, env = process.env } = {})
   return async function handler(req, res) {
     const reply = (code, data) => { res.writeHead(code, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(data)); };
     const origin = req.headers.origin;
-    const localPreview = !env.VERCEL && ['127.0.0.1:4175', 'localhost:4175'].includes(req.headers.host) && ['http://127.0.0.1:5500', 'http://localhost:5500'].includes(origin);
+    const localPreview = !env.VERCEL && ['127.0.0.1:4173', 'localhost:4173'].includes(req.headers.host) && ['http://127.0.0.1:5500', 'http://localhost:5500'].includes(origin);
     if (localPreview) {
       res.setHeader('Access-Control-Allow-Origin', origin);
       res.setHeader('Vary', 'Origin');
@@ -26,7 +26,8 @@ export function createChatHandler({ fetchImpl = fetch, env = process.env } = {})
     } catch { return reply(400, { error: 'Invalid request.' }); }
     const messages = body?.messages;
     if (!Array.isArray(messages) || !messages.length || messages.length > 7 || messages.at(-1)?.role !== 'user' || messages.some(m => !['user', 'assistant'].includes(m?.role) || typeof m.content !== 'string' || !m.content.trim() || m.content.length > 1200)) return reply(400, { error: 'Send a question of up to 1,200 characters.' });
-    if (!env.GEMINI_API_KEY) return reply(503, { error: 'Chat is not configured yet. Please contact Jhun by email.' });
+    const apiKey = env.GEMINI_API_KEY?.trim() || env.GOOGLE_API_KEY?.trim();
+    if (!apiKey) return reply(503, { code: 'CHAT_NOT_CONFIGURED', error: 'The assistant is temporarily offline. You can reach Jhun at jhunlester88@gmail.com.' });
     // Per-process cost cap. Use a shared gateway limit for multi-instance hosting.
     const minute = Math.floor(Date.now() / 60000);
     for (const key of budgets.keys()) if (key !== minute) budgets.delete(key);
@@ -36,7 +37,7 @@ export function createChatHandler({ fetchImpl = fetch, env = process.env } = {})
     try {
       const model = env.GEMINI_MODEL || 'gemini-3.5-flash';
       const upstream = await fetchImpl(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
-        method: 'POST', headers: { 'x-goog-api-key': env.GEMINI_API_KEY, 'Content-Type': 'application/json' },
+        method: 'POST', headers: { 'x-goog-api-key': apiKey, 'Content-Type': 'application/json' },
         body: JSON.stringify({ systemInstruction: { parts: [{ text: instructions }] }, contents: messages.map(({ role, content }) => ({ role: role === 'assistant' ? 'model' : 'user', parts: [{ text: content }] })), generationConfig: { maxOutputTokens: 1024, temperature: 0.3, ...(model.startsWith("gemini-3") ? { thinkingConfig: { thinkingLevel: "minimal" } } : {}) } }),
         signal: AbortSignal.timeout(30000)
       });

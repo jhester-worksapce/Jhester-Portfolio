@@ -3,7 +3,7 @@ const dialog = $('#ai-dialog'), input = $('#ai-input'), messages = $('#ai-messag
 let history = [], controller, generating = false;
 // VS Code Live Server cannot execute server functions. Vercel uses same-origin /api/chat.
 const livePreview = ['localhost', '127.0.0.1'].includes(location.hostname) && location.port === '5500';
-const chatEndpoint = livePreview ? 'http://127.0.0.1:4175/api/chat' : '/api/chat';
+const chatEndpoint = livePreview ? 'http://127.0.0.1:4173/api/chat' : '/api/chat';
 document.querySelectorAll('[data-open-ai]').forEach(button => button.addEventListener('click', () => {
   if (dialog.open) return;
   document.querySelector('dialog[open]')?.close(); dialog.showModal(); input.focus();
@@ -29,16 +29,21 @@ async function ask(question) {
     history.push(message, { role: 'assistant', content: data.answer.slice(0, 1200) }); history = history.slice(-6);
     status.textContent = '';
   } catch (error) {
-    answer.classList.add('error'); answer.textContent = controller.signal.aborted ? (controller.signal.reason === 'timeout' ? 'The reply took too long. Please retry.' : 'Response stopped.') : error.message;
+    const connectionError = error instanceof TypeError
+      ? (livePreview ? 'The local chat server is not running. Start npm run dev and open http://127.0.0.1:4173 to chat.' : 'Could not connect to chat. Check your connection and try again, or email Jhun at jhunlester88@gmail.com.')
+      : error.message;
+    answer.classList.add('error'); answer.textContent = controller.signal.aborted ? (controller.signal.reason === 'timeout' ? 'The reply took too long. Please retry.' : 'Response stopped.') : connectionError;
+    if (!controller.signal.aborted) input.value = message.content;
     status.textContent = '';
   } finally {
     clearTimeout(timer); answer.classList.remove('thinking'); generating = false; input.disabled = false;
     $('#ai-send').hidden = false; $('#ai-stop').hidden = true; $('#ai-clear').disabled = false;
-    messages.scrollTop = messages.scrollHeight; input.focus();
+    messages.scrollTop = messages.scrollHeight; if (dialog.open) input.focus();
   }
 }
 $('#ai-form').addEventListener('submit', event => { event.preventDefault(); ask(input.value); });
 input.addEventListener('keydown', event => { if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); ask(input.value); } });
 $('#ai-stop').addEventListener('click', () => controller?.abort());
+dialog.addEventListener('close', () => controller?.abort());
 $('#ai-clear').addEventListener('click', () => { if (generating) return; history = []; messages.replaceChildren(); status.textContent = 'Chat cleared.'; });
 document.querySelectorAll('[data-ai-prompt]').forEach(button => button.addEventListener('click', () => ask(button.dataset.aiPrompt)));

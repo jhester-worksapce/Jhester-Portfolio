@@ -26,4 +26,25 @@ Node.js 24 is supported. Copy `.env.example` to `.env.local`, fill in the local 
 
 The original page remains in `legacy-index.html` and `legacy-index.css`, excluded from production. GitHub contributions come from the public `github-contributions-api.jogruber.de` feed for `Jhester11`, with error handling rather than fabricated counts. The photo effect uses nine AI-generated head angles in `img/portrait-directions.png`, with a continuous head and neck blended into a fixed torso from the center frame. Short transitions and boundary hysteresis prevent abrupt switching and jitter. The original photo is only a loading/failure fallback, never an underlying second head. These are inferred views, not additional photographs. Touch and reduced-motion users see a still center pose. `.openai/hosting.json` is an earlier hosting integration and is not used by Vercel.
 
-VS Code Live Server on port 5500 uses the local API bridge at 127.0.0.1:4175. This bridge must be running for local AI replies; Vercel automatically uses its own /api/chat function. A valid Gemini key with available quota is required in either case. Local .env.local secrets are ignored by Git and excluded from dist.
+VS Code Live Server on port 5500 uses the local API bridge at 127.0.0.1:4173. This bridge must be running for local AI replies; Vercel automatically uses its own /api/chat function. A valid Gemini key with available quota is required in either case. Local .env.local secrets are ignored by Git and excluded from dist.
+
+## Troubleshooting the deployed chat
+
+“Chat is not configured yet” means the deployed server has no key. Pushing files to GitHub does not transfer `.env.local` to Vercel.
+
+1. Open your portfolio project in Vercel → Settings → Environment Variables.
+2. Set `GEMINI_API_KEY` to the actual key from Google AI Studio, with **Production** selected (also select Preview if you want to test preview deployments). A Google project name or project number is not an API key. `GOOGLE_API_KEY` is accepted as a fallback; `GEMINI_API_KEY` takes precedence in this app.
+3. Redeploy from Deployments. Existing deployments do not pick up new variables automatically.
+4. Open the deployed portfolio, choose Ask anything, and ask about projects. If the service reports a usage limit, check Gemini project quota; if it reports unavailable, check the key's access and `GEMINI_MODEL`.
+
+Do not paste credentials into the portfolio files. Replace the key shared in chat in Google AI Studio and enter its replacement directly in Vercel.
+
+## Interaction updates
+
+Ask anything opens a dark, full-screen question overlay; Alt+K opens it from the keyboard. Ctrl/Cmd+K still opens portfolio search. Alt+J opens a 30-second typing test with WPM, current-text accuracy, restart, and optional typing sounds. Closing the test cancels it; reopening starts fresh. System, light, and dark appearance choices are saved locally. Chat history remains in memory and clears on reload.
+
+The reference's live visitor count and shared community chat are not implemented: they require shared storage/presence and moderation. No visitor numbers are simulated.
+
+Production builds fall back to the confirmed public address `https://jhester-portfolio.vercel.app/` if Vercel does not provide its production URL. Preview and local builds remain excluded from indexing. In Google Search Console add that exact HTTPS URL as a URL-prefix property, verify ownership, submit `sitemap.xml`, and request homepage indexing. If using HTML verification, save the token as `GOOGLE_SITE_VERIFICATION` in Vercel and redeploy first.
+
+The sound-effects button now plays a short synthesized ringtone when enabled; disabling it mutes playback. Chat connection failures show recovery guidance and preserve the question for retry. Live Server on port 5500 now uses the same port 4173 server started by `npm run dev`.
