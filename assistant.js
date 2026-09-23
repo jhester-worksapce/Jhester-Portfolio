@@ -14,9 +14,10 @@ function addMessage(text, type) {
 }
 async function ask(question) {
   if (generating || !question.trim()) return;
+  stopDictation();
   const message = { role: 'user', content: question.trim().slice(0, 1200) };
   generating = true; controller = new AbortController();
-  input.disabled = true; $('#ai-send').hidden = true; $('#ai-stop').hidden = false; $('#ai-clear').disabled = true;
+  input.disabled = true; $('#ai-mic').disabled = true; $('#ai-send').hidden = true; $('#ai-stop').hidden = false; $('#ai-clear').disabled = true;
   addMessage(message.content, 'user'); input.value = '';
   const answer = addMessage('Thinking…', 'assistant thinking'); status.textContent = 'Asking Jhun’s AI assistant…';
   const timer = setTimeout(() => controller.abort('timeout'), 35000);
@@ -37,13 +38,57 @@ async function ask(question) {
     status.textContent = '';
   } finally {
     clearTimeout(timer); answer.classList.remove('thinking'); generating = false; input.disabled = false;
-    $('#ai-send').hidden = false; $('#ai-stop').hidden = true; $('#ai-clear').disabled = false;
+    $('#ai-send').hidden = false; $('#ai-stop').hidden = true; $('#ai-clear').disabled = false; $('#ai-mic').disabled = false;
     messages.scrollTop = messages.scrollHeight; if (dialog.open) input.focus();
   }
 }
 $('#ai-form').addEventListener('submit', event => { event.preventDefault(); ask(input.value); });
 input.addEventListener('keydown', event => { if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); ask(input.value); } });
 $('#ai-stop').addEventListener('click', () => controller?.abort());
-dialog.addEventListener('close', () => controller?.abort());
-$('#ai-clear').addEventListener('click', () => { if (generating) return; history = []; messages.replaceChildren(); status.textContent = 'Chat cleared.'; });
+dialog.addEventListener('close', () => { controller?.abort(); stopDictation(); });
+$('#ai-clear').addEventListener('click', () => { if (generating) return; stopDictation(); history = []; messages.replaceChildren(); input.value = ''; status.textContent = ''; input.focus(); });
 document.querySelectorAll('[data-ai-prompt]').forEach(button => button.addEventListener('click', () => ask(button.dataset.aiPrompt)));
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition, listening = false;
+const microphone = $('#ai-mic');
+function stopDictation() {
+  const previous = recognition; recognition = undefined; listening = false;
+  previous?.abort();
+  microphone.setAttribute('aria-pressed', 'false');
+  microphone.setAttribute('aria-label', 'Dictate your question');
+  $('#voice-note').hidden = true;
+}
+microphone.addEventListener('click', () => {
+  if (listening) { recognition?.stop(); return; }
+  if (!SpeechRecognition) { status.textContent = 'Voice input is unavailable in this browser. Try Chrome, or type your question.'; return; }
+  if (!window.isSecureContext) { status.textContent = 'Voice input needs HTTPS or localhost. Please open the live portfolio.'; return; }
+  const session = new SpeechRecognition(); recognition = session;
+  const draft = input.value.trim();
+  session.lang = navigator.language || 'en-US'; session.interimResults = true; session.continuous = false;
+  session.onstart = () => {
+    if (recognition !== session) return;
+    status.textContent = 'Listening… click the microphone to finish.';
+  };
+  session.onresult = event => {
+    if (recognition !== session || !dialog.open) return;
+    const transcript = Array.from(event.results, result => result[0].transcript).join(' ');
+    input.value = [draft, transcript].filter(Boolean).join(' ').slice(0, 1200);
+  };
+  session.onerror = event => {
+    if (recognition !== session) return;
+    const errors = { 'not-allowed': 'Microphone access was denied. Allow it in your browser site settings, or type instead.', 'audio-capture': 'No microphone is available. Connect one or type instead.', 'no-speech': 'No speech detected. Click the microphone to try again.', network: 'Voice recognition could not connect. Please try again or type your question.' };
+    status.textContent = errors[event.error] || 'Voice input stopped. You can still type your question.';
+  };
+  session.onend = () => {
+    if (recognition !== session) return;
+    recognition = undefined; listening = false;
+    microphone.setAttribute('aria-pressed', 'false'); microphone.setAttribute('aria-label', 'Dictate your question');
+    if (status.textContent.startsWith('Listening')) status.textContent = 'Review your question, then press Enter to send.';
+    if (dialog.open) input.focus();
+  };
+  try {
+    listening = true; microphone.setAttribute('aria-pressed', 'true'); microphone.setAttribute('aria-label', 'Stop dictation');
+    $('#voice-note').hidden = false; status.textContent = 'Connecting to microphone…'; session.start();
+  } catch { stopDictation(); status.textContent = 'Could not start voice input. Please type or try again.'; }
+});

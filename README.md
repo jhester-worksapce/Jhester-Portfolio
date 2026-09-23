@@ -48,3 +48,11 @@ The reference's live visitor count and shared community chat are not implemented
 Production builds fall back to the confirmed public address `https://jhester-portfolio.vercel.app/` if Vercel does not provide its production URL. Preview and local builds remain excluded from indexing. In Google Search Console add that exact HTTPS URL as a URL-prefix property, verify ownership, submit `sitemap.xml`, and request homepage indexing. If using HTML verification, save the token as `GOOGLE_SITE_VERIFICATION` in Vercel and redeploy first.
 
 The sound-effects button now plays a short synthesized ringtone when enabled; disabling it mutes playback. Chat connection failures show recovery guidance and preserve the question for retry. Live Server on port 5500 now uses the same port 4173 server started by `npm run dev`.
+
+## Minimal chat, voice input, and typing modes
+
+Chat now handles general questions as well as verified portfolio facts. It has no live browsing or ability to act on the visitor's behalf. The floating launcher is replaced by an AI icon beside the sidebar appearance and sound controls. The overlay starts with a heading and blank input; suggestions, placeholder copy, and the old footer are removed.
+
+The microphone button uses the browser's SpeechRecognition feature, only after a click. It inserts a transcript for review and manual submission. Closing chat or submitting stops capture. Unsupported browsers, permission denial, missing microphones, and recognition network errors leave typing available. The browser may send audio to its recognition service; the interface discloses this when dictation is activated. Live microphone capture must be checked on a supported browser with permission.
+
+Typing tests now shuffle words, sentences, or code on every restart and offer 15, 30, and 60 seconds. The portrait uses a CSS grayscale/halftone treatment over the existing portrait animation; no replacement identity or new image is generated.

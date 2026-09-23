@@ -10,7 +10,7 @@ if (rawUrl) {
 }
 await rm('dist/assistant-worker.js', { force: true });
 await mkdir('dist', { recursive: true });
-for (const file of ['index.css', 'portfolio.js', 'favicon.svg', 'features.css', 'features.js', 'calendar.js', 'assistant.js', 'portrait.js']) await cp(file, `dist/${file}`);
+for (const file of ['index.css', 'portfolio.js', 'favicon.svg', 'features.css', 'features.js', 'calendar.js', 'assistant.js', 'portrait.js', 'typing.js']) await cp(file, `dist/${file}`);
 for (const file of ['jhun_profile.png', 'portrait-directions.png', 'Projects/masaWrap.PNG', 'Projects/Zabcus.PNG']) {
   await mkdir(`dist/img/${file.includes('/') ? 'Projects' : ''}`, { recursive: true });
   await cp(`img/${file}`, `dist/img/${file}`);

@@ -1,3 +1,4 @@
+import { makePassage } from './typing.js';
 import { prepareCalendar } from './calendar.js';
 import './assistant.js';
 
@@ -100,8 +101,8 @@ if ('IntersectionObserver' in window) {
 // Compact sidebar utilities. Test results remain local to this page.
 const typingDialog = document.querySelector('#typing-dialog');
 const typingInput = document.querySelector('#typing-input');
-const passage = 'build things that matter and keep learning every day. a thoughtful website starts with people and grows through small ideas. write clear code, share what you know, and make something useful for the world. every new project is a chance to try again and create a better experience. ';
-const targetPassage = passage.repeat(4);
+let targetPassage = '';
+let duration = 30;
 let startedAt = 0, typingTimer, soundEnabled = false, audioContext;
 function renderPassage() {
   const typed = typingInput.value;
@@ -112,23 +113,31 @@ function renderPassage() {
     fragment.append(span);
   }
   document.querySelector('#typing-passage').replaceChildren(fragment);
-  document.querySelector('#typing-passage').children[typed.length]?.scrollIntoView({ block: 'nearest' });
+  const passageElement = document.querySelector('#typing-passage');
+  const current = passageElement.children[Math.min(typed.length, targetPassage.length - 1)];
+  if (current) {
+    const top = current.getBoundingClientRect().top - passageElement.getBoundingClientRect().top;
+    if (top < 0 || top > passageElement.clientHeight - 40) passageElement.scrollTop += top;
+  }
 }
 function updateTyping() {
-  const elapsed = startedAt ? Math.min(30, (performance.now() - startedAt) / 1000) : 0;
+  const elapsed = startedAt ? Math.min(duration, (performance.now() - startedAt) / 1000) : 0;
   const typed = typingInput.value;
   const correct = [...typed].filter((character, index) => character === targetPassage[index]).length;
   const wpm = elapsed > 0 ? Math.round(correct / 5 / (elapsed / 60)) : 0;
   const accuracy = typed.length ? Math.round(correct / typed.length * 100) : 100;
   document.querySelector('#typing-wpm').textContent = wpm;
   document.querySelector('#typing-accuracy').textContent = accuracy;
-  document.querySelector('#typing-time').textContent = Math.ceil(30 - elapsed);
-  if (elapsed >= 30 || typed.length >= targetPassage.length) {
+  document.querySelector('#typing-time').textContent = Math.ceil(duration - elapsed);
+  if (elapsed >= duration || typed.length >= targetPassage.length) {
     clearInterval(typingTimer); typingInput.disabled = true;
     document.querySelector('#typing-result').textContent = `Finished! ${wpm} words per minute with ${accuracy}% accuracy.`;
   }
 }
 function resetTyping() {
+  duration = Number(document.querySelector('#typing-duration').value);
+  targetPassage = makePassage(document.querySelector('#typing-mode').value, targetPassage);
+  typingInput.maxLength = targetPassage.length;
   clearInterval(typingTimer); startedAt = 0; typingInput.value = ''; typingInput.disabled = false;
   document.querySelector('#typing-result').textContent = ''; renderPassage(); updateTyping(); typingInput.focus();
 }
@@ -139,10 +148,11 @@ function openTyping() {
 document.querySelectorAll('[data-open-typing]').forEach(button => button.addEventListener('click', openTyping));
 document.querySelector('#typing-restart').addEventListener('click', resetTyping);
 typingDialog.addEventListener('close', () => clearInterval(typingTimer));
-typingInput.maxLength = targetPassage.length;
+document.querySelector('#typing-mode').addEventListener('change', resetTyping);
+document.querySelector('#typing-duration').addEventListener('change', resetTyping);
 typingInput.addEventListener('paste', event => event.preventDefault());
 typingInput.addEventListener('drop', event => event.preventDefault());
-typingInput.addEventListener('beforeinput', event => { if (startedAt && performance.now() - startedAt >= 30000) { event.preventDefault(); updateTyping(); } });
+typingInput.addEventListener('beforeinput', event => { if (startedAt && performance.now() - startedAt >= duration * 1000) { event.preventDefault(); updateTyping(); } });
 typingInput.addEventListener('input', () => {
   if (!startedAt && typingInput.value.length) { startedAt = performance.now(); typingTimer = setInterval(updateTyping, 100); }
   renderPassage(); updateTyping();

@@ -53,7 +53,7 @@
                 mind?<br>Let’s make it happen.</p><a href="mailto:jhunlester88@gmail.com">Get in touch
                 <span>↗</span></a></div>
         <div class="sidebar-bottom">
-            <div class="theme-row"><div class="theme-options" role="group" aria-label="Appearance"><button data-theme-choice="system" aria-label="System theme" title="System theme">▣</button><button data-theme-choice="light" aria-label="Light theme" title="Light theme">☼</button><button data-theme-choice="dark" aria-label="Dark theme" title="Dark theme">☾</button></div><button id="sound-toggle" class="icon-button" aria-label="Sound effects" aria-pressed="false" title="Enable sounds and play ringtone">♪</button><button id="theme-toggle" hidden
+            <div class="theme-row"><div class="theme-options" role="group" aria-label="Appearance"><button data-theme-choice="system" aria-label="System theme" title="System theme">▣</button><button data-theme-choice="light" aria-label="Light theme" title="Light theme">☼</button><button data-theme-choice="dark" aria-label="Dark theme" title="Dark theme">☾</button></div><button id="sound-toggle" class="icon-button" aria-label="Sound effects" aria-pressed="false" title="Enable sounds and play ringtone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg></button><button class="icon-button sidebar-ai" data-open-ai aria-label="Open AI chat" title="Ask anything">✧</button><button id="theme-toggle" hidden
                     aria-label="Switch to dark theme" aria-pressed="false">◐</button></div><a
                 href="https://github.com/Jhester11" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a
                 href="https://www.linkedin.com/in/jhun-lester-cervantes-bb4253325/" target="_blank"
@@ -279,31 +279,25 @@
         </div>
     </dialog>
     <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
-    <button class="ai-launcher" data-open-ai aria-haspopup="dialog"><span aria-hidden="true">✧</span> Ask about Jhun
-        <span class="ai-badge">AI</span></button>
     <dialog id="ai-dialog" aria-labelledby="ai-title">
         <div class="dialog-header">
-            <span class="ai-eyebrow">JHUN’S PORTFOLIO ASSISTANT</span>
             <button id="ai-clear" class="icon-button" aria-label="Clear conversation" title="Clear conversation">↺</button>
             <button class="icon-button" data-close-dialog aria-label="Close AI chat">×</button>
         </div>
         <div class="ai-content">
         <h2 id="ai-title">what do you want to ask?</h2>
-        <p id="ai-status" class="sr-only" role="status"></p>
+        <p id="ai-status" role="status"></p>
         <div id="ai-messages" role="log" aria-label="Conversation" aria-live="polite"></div>
-        <div class="ai-suggestions"><button data-ai-prompt="What projects has Jhun built?">Explore projects
-                ↗</button><button data-ai-prompt="What are Jhun's skills?">Skills & tools ↗</button><button
-                data-ai-prompt="How can I contact Jhun?">Work together ↗</button></div>
         <form id="ai-form"><label for="ai-input" class="sr-only">Your question</label><textarea id="ai-input" rows="2"
-                maxlength="1200" placeholder="Ask about my work, skills, or your next project…" required></textarea><button id="ai-send"
-                type="submit" class="button primary">Send ↑</button><button id="ai-stop" type="button"
-                class="button secondary" hidden>Stop</button></form>
-        <p class="ai-disclaimer">AI answers about Jhun · Enter to send · Esc to close · <a href="mailto:jhunlester88@gmail.com">Email Jhun ↗</a></p>
+                maxlength="1200" required></textarea><div class="ai-input-actions"><button id="ai-mic" type="button" class="icon-button" aria-label="Dictate your question" aria-pressed="false" title="Speak your question"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8"/></svg></button><button id="ai-send"
+                type="submit" class="icon-button" aria-label="Send question" title="Send question">↑</button><button id="ai-stop" type="button"
+                class="icon-button" aria-label="Stop response" hidden>■</button></div></form>
+        <p id="voice-note" hidden>Your browser may process audio online. Review the transcript, then press Enter to send.</p>
         </div>
     </dialog>
     <dialog id="typing-dialog" aria-labelledby="typing-title">
         <div class="dialog-header"><h2 id="typing-title">a little typing break.</h2><button class="icon-button" data-close-dialog aria-label="Close typing test">×</button></div>
-        <p>30 seconds. Start typing to begin.</p>
+        <div class="typing-settings"><span>find your rhythm.</span><label>mode <select id="typing-mode"><option value="words">words</option><option value="sentences">sentences</option><option value="code">code</option></select></label><label>time <select id="typing-duration"><option value="15">15s</option><option value="30" selected>30s</option><option value="60">60s</option></select></label></div>
         <div class="typing-stats"><span><b id="typing-wpm">0</b> wpm</span><span><b id="typing-accuracy">100</b>% accuracy</span><span><b id="typing-time">30</b>s left</span></div>
         <p id="typing-passage"></p>
         <label class="sr-only" for="typing-input">Type the passage above</label><textarea id="typing-input" rows="3" placeholder="Start here…" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
