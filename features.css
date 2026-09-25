@@ -70,4 +70,11 @@ body:has(dialog[open]){overflow:hidden}
 .portrait-wrap{background:transparent;border:0;border-radius:0;box-shadow:none;isolation:auto}
 .portrait-stage::after{display:none}
 html[data-theme=dark] .portrait-stage{mix-blend-mode:lighten}
+/* Chat uses the same palette and solid background as the portfolio. */
+#ai-dialog{--bg:inherit;--surface:inherit;--soft:inherit;--ink:inherit;--muted:inherit;--line:inherit;--green:inherit;--green-soft:inherit;background:var(--bg);color:var(--ink)}
+#ai-dialog::backdrop{background:var(--bg);backdrop-filter:none}
+#ai-dialog #ai-title,#ai-dialog #ai-input,#ai-dialog .icon-button{color:var(--ink)}
+#ai-dialog:has(.chat-message) #ai-title,#ai-dialog #ai-status{color:var(--muted)}
+#ai-dialog .icon-button:hover{background:var(--soft);color:var(--ink)}
+#ai-dialog .ai-input-actions .icon-button{border-color:var(--line)}
 @media(max-width:560px){#ai-dialog .ai-content,#ai-dialog:has(.chat-message) .ai-content{margin:auto;padding:20px 0}#ai-dialog #ai-messages{max-height:45dvh}}
