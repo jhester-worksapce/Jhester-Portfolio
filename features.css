@@ -62,3 +62,12 @@ body:has(dialog[open]){overflow:hidden}
 @media(min-width:801px) and (max-height:850px){.sidebar{padding-top:20px}.sidebar .search-trigger{margin:22px 0 18px}.sidebar .ask-sidebar{margin:0 0 4px;padding:4px}.sidebar .typing-trigger{margin-bottom:16px}.sidebar nav{gap:1px}.sidebar nav a{padding-block:6px}.sidebar .sidebar-note{margin-top:18px;padding:12px 4px}.sidebar .sidebar-note p{margin:7px 0}.sidebar .sidebar-bottom{padding:0 4px}.sidebar .sidebar-contact{margin-top:9px}.sidebar .theme-row{padding-top:10px}}
 .portrait-wrap{padding-top:0}.portrait-stage{margin-top:-45px}
 #typing-dialog{padding:28px;max-height:calc(100dvh - 32px)}#typing-dialog .dialog-header{margin-bottom:16px}#typing-dialog .typing-settings{padding-bottom:12px}#typing-dialog .typing-stats{margin-top:18px}#typing-passage{max-height:145px;margin:18px 0}#typing-input{height:70px;min-height:70px;resize:none}#typing-result{margin:12px 0;min-height:20px}
+/* Keep the conversation centered, including after the first response. */
+#ai-dialog[open]{display:flex;flex-direction:column}
+#ai-dialog .dialog-header{flex:0 0 auto}
+#ai-dialog .ai-content,#ai-dialog:has(.chat-message) .ai-content{width:min(920px,100%);margin:auto;flex:0 0 auto;padding:28px 0;transition:none}
+#ai-dialog #ai-messages{max-height:50dvh}
+.portrait-wrap{background:transparent;border:0;border-radius:0;box-shadow:none;isolation:auto}
+.portrait-stage::after{display:none}
+html[data-theme=dark] .portrait-stage{mix-blend-mode:lighten}
+@media(max-width:560px){#ai-dialog .ai-content,#ai-dialog:has(.chat-message) .ai-content{margin:auto;padding:20px 0}#ai-dialog #ai-messages{max-height:45dvh}}

@@ -20,7 +20,7 @@ function setup(supported = true) {
   vm.runInNewContext(source, { document: { querySelector: node, querySelectorAll: () => [] }, window: { SpeechRecognition: supported ? Recognition : undefined, isSecureContext: true }, location: { hostname: 'example.com' }, navigator: { language: 'en-US' }, AbortController, setTimeout, clearTimeout });
   return { node, session: () => session };
 }
-test('dictation preserves draft, never submits, and ignores late results after close', () => {
+test('dictation preserves draft while open and clears it on close, ignoring late results', () => {
   const {node,session} = setup();
   node('#ai-input').value = 'Please explain'; node('#ai-mic').events.click();
   assert.equal(node('#ai-mic').attrs['aria-pressed'], 'true');
@@ -28,7 +28,7 @@ test('dictation preserves draft, never submits, and ignores late results after c
   assert.equal(node('#ai-input').value, 'Please explain gravity');
   node('#ai-dialog').events.close();
   session().onresult({ results: [[{ transcript: 'late audio' }]] });
-  assert.equal(node('#ai-input').value, 'Please explain gravity');
+  assert.equal(node('#ai-input').value, '');
   assert.equal(node('#ai-mic').attrs['aria-pressed'], 'false');
 });
 test('denied and unsupported microphones keep text input usable', () => {

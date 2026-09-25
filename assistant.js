@@ -17,36 +17,44 @@ async function ask(question) {
   stopDictation();
   const message = { role: 'user', content: question.trim().slice(0, 1200) };
   generating = true; controller = new AbortController();
-  input.disabled = true; $('#ai-mic').disabled = true; $('#ai-send').hidden = true; $('#ai-stop').hidden = false; $('#ai-clear').disabled = true;
+  const request = controller;
+  input.disabled = true; $('#ai-mic').disabled = true; $('#ai-send').hidden = true; $('#ai-stop').hidden = false;
   addMessage(message.content, 'user'); input.value = '';
   const answer = addMessage('Thinking…', 'assistant thinking'); status.textContent = 'Asking Jhun’s AI assistant…';
-  const timer = setTimeout(() => controller.abort('timeout'), 35000);
+  const timer = setTimeout(() => request.abort('timeout'), 35000);
   try {
-    const response = await fetch(chatEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: [...history.slice(-6), message] }), signal: controller.signal });
+    const response = await fetch(chatEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: [...history.slice(-6), message] }), signal: request.signal });
     const data = await response.json().catch(() => ({ error: 'Chat is temporarily unavailable. Please try again shortly or email Jhun.' }));
+    if (controller !== request) return;
     if (!response.ok) throw new Error(data.error || 'Chat is unavailable. Please try again.');
     if (typeof data.answer !== 'string' || !data.answer.trim()) throw new Error('No answer was returned. Please retry.');
     answer.textContent = data.answer;
     history.push(message, { role: 'assistant', content: data.answer.slice(0, 1200) }); history = history.slice(-6);
     status.textContent = '';
   } catch (error) {
+    if (controller !== request) return;
     const connectionError = error instanceof TypeError
       ? (livePreview ? 'The local chat server is not running. Start npm run dev and open http://127.0.0.1:4173 to chat.' : 'Could not connect to chat. Check your connection and try again, or email Jhun at jhunlester88@gmail.com.')
       : error.message;
-    answer.classList.add('error'); answer.textContent = controller.signal.aborted ? (controller.signal.reason === 'timeout' ? 'The reply took too long. Please retry.' : 'Response stopped.') : connectionError;
-    if (!controller.signal.aborted) input.value = message.content;
+    answer.classList.add('error'); answer.textContent = request.signal.aborted ? (request.signal.reason === 'timeout' ? 'The reply took too long. Please retry.' : 'Response stopped.') : connectionError;
+    if (!request.signal.aborted) input.value = message.content;
     status.textContent = '';
   } finally {
-    clearTimeout(timer); answer.classList.remove('thinking'); generating = false; input.disabled = false;
-    $('#ai-send').hidden = false; $('#ai-stop').hidden = true; $('#ai-clear').disabled = false; $('#ai-mic').disabled = false;
+    clearTimeout(timer);
+    if (controller !== request) return;
+    answer.classList.remove('thinking'); generating = false; input.disabled = false;
+    $('#ai-send').hidden = false; $('#ai-stop').hidden = true; $('#ai-mic').disabled = false;
     messages.scrollTop = messages.scrollHeight; if (dialog.open) input.focus();
   }
 }
 $('#ai-form').addEventListener('submit', event => { event.preventDefault(); ask(input.value); });
 input.addEventListener('keydown', event => { if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); ask(input.value); } });
 $('#ai-stop').addEventListener('click', () => controller?.abort());
-dialog.addEventListener('close', () => { controller?.abort(); stopDictation(); });
-$('#ai-clear').addEventListener('click', () => { if (generating) return; stopDictation(); history = []; messages.replaceChildren(); input.value = ''; status.textContent = ''; input.focus(); });
+dialog.addEventListener('close', () => {
+  const previous = controller; controller = undefined; previous?.abort(); stopDictation();
+  history = []; generating = false; messages.replaceChildren(); input.value = ''; status.textContent = '';
+  input.disabled = false; $('#ai-mic').disabled = false; $('#ai-send').hidden = false; $('#ai-stop').hidden = true;
+});
 document.querySelectorAll('[data-ai-prompt]').forEach(button => button.addEventListener('click', () => ask(button.dataset.aiPrompt)));
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
