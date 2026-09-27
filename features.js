@@ -1,6 +1,7 @@
 import { makePassage } from './typing.js';
 import { prepareCalendar } from './calendar.js';
 import './assistant.js';
+import './community.js';
 
 // Keep the system pointer; the decorative ring never captures input.
 const follower = document.querySelector('#cursor-follower');

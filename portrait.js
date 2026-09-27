@@ -38,6 +38,14 @@ export function initPortrait() {
     target.ctx.globalCompositeOperation = 'lighter';
     target.ctx.drawImage(head.surface, 0, 0);
     target.ctx.globalCompositeOperation = 'source-over';
+    // Apply a fine halftone only to the portrait's opaque pixels.
+    target.ctx.globalCompositeOperation = 'source-atop';
+    target.ctx.fillStyle = 'rgba(12,12,15,.48)';
+    target.ctx.beginPath();
+    for (let y = 0; y < 500; y += 3) for (let x = 0; x < 500; x += 3) {
+      target.ctx.moveTo(x + .7, y); target.ctx.arc(x, y, .7, 0, Math.PI * 2);
+    }
+    target.ctx.fill(); target.ctx.globalCompositeOperation = 'source-over';
   }
   function draw(index, immediate = false) {
     if (!ready) return;
