@@ -7,6 +7,12 @@ test('Vercel production builds are indexable and previews clear old metadata', (
   const build = () => execFileSync(process.execPath, ['scripts/build.mjs'], { env, stdio: 'pipe' });
   try {
     build();
+    const html = readFileSync('dist/index.html', 'utf8');
+    const website = JSON.parse(html.match(/id="website-schema">(.*?)<\/script>/)[1]);
+    assert.equal(website['@type'], 'WebSite');
+    assert.equal(website.name, 'Jhun Lester Cervantes');
+    assert.equal(website.url, 'https://portfolio.example/');
+    assert.match(html, /property="og:site_name" content="Jhun Lester Cervantes"/);
     assert.match(readFileSync('dist/index.html', 'utf8'), /rel="canonical" href="https:\/\/portfolio.example\/"/);
     assert.match(readFileSync('dist/robots.txt', 'utf8'), /Allow: \//);
     assert.match(readFileSync('dist/sitemap.xml', 'utf8'), /https:\/\/portfolio.example\//);
@@ -17,6 +23,7 @@ test('Vercel production builds are indexable and previews clear old metadata', (
     env.VERCEL_ENV = 'preview'; env.SITE_URL = 'https://production.example'; build();
     const preview = readFileSync('dist/index.html', 'utf8');
     assert.match(preview, /noindex, nofollow/); assert.doesNotMatch(preview, /rel="canonical"/);
+    assert.doesNotMatch(preview, /id="website-schema"/);
     assert.doesNotMatch(readFileSync('dist/sitemap.xml', 'utf8'), /portfolio.example|production.example/);
   } finally {
     env.VERCEL_ENV = ''; env.SITE_URL = ''; env.VERCEL_PROJECT_PRODUCTION_URL = ''; build();

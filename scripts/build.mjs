@@ -19,6 +19,8 @@ const xmlEscape = text => text.replaceAll('&', '&amp;').replaceAll('"', '&quot;'
 const verification = process.env.GOOGLE_SITE_VERIFICATION;
 if (verification) html = html.replace('</head>', `<meta name="google-site-verification" content="${xmlEscape(verification)}"></head>`);
 if (base) {
+  const website = { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Jhun Lester Cervantes', alternateName: ['Jhun Lester', 'Jhester'], url: base };
+  html = html.replace('</head>', `<script type="application/ld+json" id="website-schema">${JSON.stringify(website).replaceAll('<', '\\u003c')}</script></head>`);
   html = html.replace('</head>', `<link rel="canonical" href="${xmlEscape(base)}"><meta property="og:url" content="${xmlEscape(base)}"><meta property="og:image" content="${xmlEscape(base)}img/jhun_profile.png"><meta property="og:image:alt" content="Jhun Lester Cervantes"><meta name="twitter:image" content="${xmlEscape(base)}img/jhun_profile.png"></head>`);
   html = html.replace(/(<script type="application\/ld\+json" id="profile-schema">)([\s\S]*?)(<\/script>)/, (_, start, json, end) => start + JSON.stringify({ ...JSON.parse(json), url: base, image: base + 'img/jhun_profile.png' }).replaceAll('<', '\\u003c') + end);
   await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${xmlEscape(base)}</loc></url></urlset>\n`);
